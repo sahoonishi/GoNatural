@@ -1,10 +1,7 @@
-import { motion } from "framer-motion";
 import React from "react";
-import { fadeIn } from "../../variants";
 import Searchbar from "../SearchBar/Searchbar";
 import { Link } from "react-router-dom";
-import Switcher from "../../Switcher";
-import Toggle from "../../Toggle";
+
 const Navbar = () => {
   const navlist = (
     <ul className="flex justify-center font-DM lg:gap-x-12 mb-3 lg:mb-1 px-5 text-sm lg:text-base text-white gap-x-4 li">
@@ -18,10 +15,10 @@ const Navbar = () => {
         <Link to={"/signup"}>SignUp</Link>
       </li>
       <li>
-        <Link to={'/Userdashboard'}>User</Link>
+        <Link to={"/Userdashboard"}>User</Link>
       </li>
       <li>
-        <Link to={'/admindashboard'}>Admin</Link>
+        <Link to={"/admindashboard"}>Admin</Link>
       </li>
       <li>
         <Link to={"/cart"}>Cart</Link>
@@ -36,20 +33,15 @@ const Navbar = () => {
         {/* left */}
         <div className="left py-3 lg:py-0">
           <Link to={"/"}>
-            <h2
-
-              className="font-bold text-center text-white text-3xl lg:text-2xl font-DM hover:scale-90 transition-all text-text-decoration-line-through "
-            >
+            <h2 className="font-bold text-center text-white text-3xl lg:text-2xl font-DM hover:scale-90 transition-all text-text-decoration-line-through ">
               GoNatural
             </h2>
           </Link>
         </div>
         {/* right */}
 
-          {navlist}
-          <Switcher/>
-          
-        
+        {navlist}
+
         {/* Searchbar */}
         <Searchbar />
       </div>
