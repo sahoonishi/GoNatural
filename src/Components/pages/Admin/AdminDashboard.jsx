@@ -1,8 +1,12 @@
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import Productdetail from "../../Admin/Productdetail";
+import OrderDetail from "../../Admin/OrderDetail";
+import UserDetail from "../../Admin/UserDetail";
+import Layout from "../../Layout/Layout";
 
 const AdminDashboard = () => {
   return (
-    <div>
+    <Layout>
       {/* Top */}
       <div className="top mb-5 px-5 mt-5">
         <div className=" bg-pink-50 py-5 border border-pink-100 rounded-lg">
@@ -133,14 +137,14 @@ const AdminDashboard = () => {
                 </div>
               </Tab>
             </TabList>
-            <TabPanel>Products</TabPanel>
-            <TabPanel>Order</TabPanel>
+            <TabPanel><Productdetail/></TabPanel>
+            <TabPanel><OrderDetail/></TabPanel>
           
-            <TabPanel>Users</TabPanel>
+            <TabPanel><UserDetail/></TabPanel>
           </Tabs>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

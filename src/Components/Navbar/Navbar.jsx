@@ -3,6 +3,8 @@ import React from "react";
 import { fadeIn } from "../../variants";
 import Searchbar from "../SearchBar/Searchbar";
 import { Link } from "react-router-dom";
+import Switcher from "../../Switcher";
+import Toggle from "../../Toggle";
 const Navbar = () => {
   const navlist = (
     <ul className="flex justify-center font-DM lg:gap-x-12 mb-3 lg:mb-1 px-5 text-sm lg:text-base text-white gap-x-4 li">
@@ -45,6 +47,8 @@ const Navbar = () => {
         {/* right */}
 
           <p>{navlist}</p>
+          <Switcher/>
+          
         
         {/* Searchbar */}
         <Searchbar />

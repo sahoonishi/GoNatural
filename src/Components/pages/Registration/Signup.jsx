@@ -1,7 +1,12 @@
 
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../Context/Mycontext";
 
 const Signup = () => {
+
+  const context = useContext(UserContext);
+
   return (
     <div className="flex justify-center items-center h-screen">
       {/* Login Form  */}

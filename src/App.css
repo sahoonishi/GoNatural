@@ -1,0 +1,66 @@
+/* App.css */
+
+/* Light theme variables */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+}
+
+/* Dark theme variables */
+:root.dark-theme {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+}
+
+/* Common styles */
+.app {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Additional styles for light theme */
+.app.light-theme {
+  /* Light theme specific styles */
+  --accent-color: #007bff;
+  --button-bg-color: #007bff;
+  --button-text-color: #ffffff;
+}
+
+/* Additional styles for dark theme */
+.app.dark-theme {
+  /* Dark theme specific styles */
+  --accent-color: #17a2b8;
+  --button-bg-color: #17a2b8;
+  --button-text-color: #ffffff;
+}
+
+/* Header styles */
+header {
+  padding: 20px;
+  background-color: var(--accent-color);
+}
+
+/* Button styles */
+button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Main content styles */
+main {
+  padding: 20px;
+}
+
+/* Paragraph styles */
+p {
+  margin-bottom: 20px;
+}
