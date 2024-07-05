@@ -26,6 +26,7 @@ const Hero = () => {
           <div> to live</div> <div>for yourself</div>
         </motion.div>
       </div>
+
     </div>
   );
 };

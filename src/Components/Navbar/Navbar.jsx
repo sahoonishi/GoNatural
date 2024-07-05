@@ -46,7 +46,7 @@ const Navbar = () => {
         </div>
         {/* right */}
 
-          <p>{navlist}</p>
+          {navlist}
           <Switcher/>
           
         

@@ -3,12 +3,12 @@
 /* Light theme variables */
 :root {
   --bg-color: #ffffff;
-  --text-color: #333333;
+  --text-color: #fffafa;
 }
 
 /* Dark theme variables */
 :root.dark-theme {
-  --bg-color: #333333;
+  --bg-color: #000000;
   --text-color: #ffffff;
 }
 

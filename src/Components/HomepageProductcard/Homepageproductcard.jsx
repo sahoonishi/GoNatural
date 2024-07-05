@@ -30,7 +30,7 @@ const productData = [
     trendingProductName: "Featured",
     quantity: 1,
     image:
-      "https://rukminim2.flixcart.com/image/612/612/xif0q/body-skin-treatment/7/m/8/-original-imagwrzzkgrent6f.jpeg?q=70",
+      "https://rukminim2.flixcart.com/image/612/612/xif0q/moisturizer-cream/j/j/2/30-kumkumadi-tailam-rishikaherbals-serum-original-imahfa39qnrjtmxz.jpeg?q=70",
   },
   {
     id: 5,
@@ -82,11 +82,11 @@ const HomepageProductcard = () => {
             {productData.map((item, index) => {
               const { image, title, price } = item;
               return (
-                <div key={index} className="p-4 w-96 justify-center md:w-1/2 lg:w-1/3">
-                  <div className="h-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-all outline-none" onClick={()=>navigate('/productinfo')}>
+                <div key={index} className="p-4 w-96 justify-center md:w-1/3 lg:w-1/4 ">
+                  <div className="h-full rounded-3xl overflow-hidden cursor-pointer hover:scale-110 transition-all outline-none" onClick={()=>navigate('/productinfo')}>
                     <img
                       
-                      className="md:w-28 md:h-24 lg:h-40 lg:w-44  h-44 w-1/2  ml-9 mt-3"
+                      className="md:w-28 md:h-24 lg:h-40 lg:w-44  h-44 w-1/2  ml-9 mt-3 rounded-2xl"
                       src={image}
                       alt="blog"
                     />
