@@ -2,14 +2,57 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../Context/Mycontext";
 import toast from "react-hot-toast";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth, fireDB } from "../../../Firebase/FirebaseConfig";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import Loader from "../../Loader/Loader";
 
 const Signup = () => {
-  const { loading , setLoading } = useContext(UserContext);
+  const { loading, setLoading } = useContext(UserContext);
   const navigate = useNavigate();
+
+  // // User Google Sign in
+
+  // const handleGoogle = async () => {
+  //   const provider = new GoogleAuthProvider();
+  //   setLoading(true);
+  //   try {
+  //     const users = await signInWithPopup(auth, provider);
+  //     const user = {
+  //       name: userSignup.name,
+  //       email: users.user.email,
+  //       uid: users.user.uid,
+  //       role: userSignup.role,
+  //       time: Timestamp.now(),
+  //       date: new Date().toLocaleString("en-US", {
+  //         month: "short",
+  //         day: "2-digit",
+  //         year: "numeric",
+  //         hour: "numeric",
+  //         minute: "numeric",
+  //         second: "numeric",
+  //       }),
+  //     };
+
+  //     const userReference = collection(fireDB, "user"); // HERE "user" IS COLLECTION NAME
+  //     addDoc(userReference, user);
+
+  //     setUserSignup({
+  //       name: "",
+  //       email: "",
+  //       password: "",
+  //     });
+  //     setLoading(false);
+  //     toast.success("User signed in successfully");
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // user signup state
 
@@ -68,17 +111,22 @@ const Signup = () => {
       setLoading(false);
       navigate("/login");
     } catch (error) {
-      console.log(error);
+      setLoading(false);
       toast.error(error.message);
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen ">
       {/* Login Form  */}
       {loading ? (
         <Loader />
       ) : (
-        <div className="login_Form bg-green-50 w-72 lg:w-fit px-1 lg:px-8 py-6 border border-green-100 rounded-tl-3xl rounded-br-3xl rounded- shadow-md">
+
+        <>
+
+        {/* <div className=""><img className=" w-full sm:w-96 hidden sm:block " src="public/image/svg-image-32.svg" alt=""  /></div> */}
+
+        <div className="login_Form bg-green-50 w-72 lg:w-fit px-1 lg:px-8 py-6  rounded-tl-3xl rounded-br-3xl shadow-md font-DM">
           {/* Top Heading  */}
           <div className="mb-5">
             <h2 className="text-center text-2xl font-bold text-green-500 ">
@@ -136,6 +184,16 @@ const Signup = () => {
             </button>
           </div>
 
+          <div className="mb-5 m-5">
+            <button
+              type="button"
+              
+              className="bg-white w-60 p-2 hover:bg-green-400 lg:w-full text-black text-center font-bold rounded-md "
+            >
+              Sign in with Google
+            </button>
+          </div>
+
           <div>
             <h2 className="text-black m-5">
               Have an account ? {} {}
@@ -145,6 +203,9 @@ const Signup = () => {
             </h2>
           </div>
         </div>
+        </>
+
+
       )}
     </div>
   );
