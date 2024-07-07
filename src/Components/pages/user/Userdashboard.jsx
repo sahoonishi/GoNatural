@@ -15,6 +15,9 @@ const products = [
 ]
 
 const Userdashboard = () => {
+    const user = JSON.parse(localStorage.getItem('users'));
+
+
     return (
         <Layout>
             <div className="font-DM container mx-auto px-4 py-5 lg:py-8">
@@ -28,8 +31,9 @@ const Userdashboard = () => {
                         </div>
                         {/* text  */}
                         <div className="">
-                            <h1 className=" text-center text-lg"><span className=" font-bold">Name :</span> Nishi</h1>
-                            <h1 className=" text-center text-lg"><span className=" font-bold">Email :</span> Nishi@gmail.com</h1>
+                            <h1 className=" text-center text-lg font-DM"><span className=" font-extrabold font-DM">Welcome </span>{user?.name}</h1>
+                            <h1 className=" text-center text-lg"><span className=" font-bold">Email : </span>{user?.email}</h1>
+                            <h1 className=" text-center text-lg"><span className=" font-bold">Date joined : </span>{user?.date}</h1>
                         </div>
                     </div>
                 </div>

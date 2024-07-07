@@ -4,8 +4,6 @@ import { UserContext } from "../../../Context/Mycontext";
 import toast from "react-hot-toast";
 import {
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
 } from "firebase/auth";
 import { auth, fireDB } from "../../../Firebase/FirebaseConfig";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
@@ -164,6 +162,7 @@ const Signup = () => {
           <div className="mb-5 m-5">
             <input
               type="password"
+              id="password"
               placeholder="Password"
               value={userSignup.password}
               onChange={(event) => {
