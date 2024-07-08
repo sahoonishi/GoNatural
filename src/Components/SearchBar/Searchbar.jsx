@@ -49,17 +49,17 @@ const SearchBar = () => {
   return (
     <div className="">
       {/* search input  */}
-      <div className="input flex justify-center border rounded-md">
+      <div className="input flex justify-center border rounded-md w-52 sm:mx-auto mx-auto">
         <input
           type="text"
           value={search}
           placeholder="Search here"
           onChange={(e) => setSearch(e.target.value)}
-          className=" bg-transparent placeholder-gray-400 rounded-lg px-5 py-2 sm:w-72 w-56 outline-none text-white "
+          className=" bg-transparent placeholder-gray-400 rounded-lg px-12 sm:px-9 py-2 sm:w-52 w-52 outline-none text-white "
         />
         {search && (
           <span
-            className="text-gray-400 -translate-x-5 pt-2 cursor-pointer"
+            className="text-gray-400 -translate-x-9 sm:-translate-x-13 pt-2 cursor-pointer"
             onClick={cleartext}
           >
             <span class="-mr-2 text-lg  material-symbols-outlined">cancel</span>
@@ -70,7 +70,7 @@ const SearchBar = () => {
       {/* search drop-down  */}
       <div className=" flex justify-center">
         {search && (
-          <div className=" block absolute bg-gray-200 w-96 md:w-96 lg:w-60 z-50 my-1 rounded-lg px-2 py-2">
+          <div className=" block absolute bg-gray-200 w-52 md:w-70 lg:w-70 z-50 my-1 rounded-lg px-2 py-2">
             {filterSearchData.length > 0 ? (
               <>
                 {filterSearchData.map((item, index) => {
