@@ -2,6 +2,7 @@ import React from "react";
 import Searchbar from "../SearchBar/Searchbar";
 import { Link, useNavigate, useRouteError } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { HiMiniShoppingCart } from "react-icons/hi2";
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("users"));
@@ -20,7 +21,12 @@ const Navbar = () => {
         <Link to={"/allproducts"}>Products</Link>
       </li>
       <li>
-        <Link to={"/cart"}>Cart</Link>
+        <Link to={"/cart"} className="relative text-lg sm:text-xl">
+          <HiMiniShoppingCart />
+          <span className="absolute -top-2 left-4 bg-gray-200 rounded-full text-black text-xs w-5 text-center shadow-lg z-1 border-x-2 border-y-2 font-DM outline-none">
+            9
+          </span>
+        </Link>
       </li>
       {!user ? (
         <li>
@@ -56,9 +62,7 @@ const Navbar = () => {
       )}
       {user && (
         <li className="cursor-pointer" onClick={logout}>
-          
-            Logout
-          
+          Logout
         </li>
       )}
     </ul>

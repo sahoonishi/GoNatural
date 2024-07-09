@@ -1,6 +1,5 @@
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { fireDB } from "../Firebase/FirebaseConfig";
 export const UserContext = createContext();
 
@@ -40,6 +39,7 @@ const Mycontext = ({ children }) => {
         loading,
         setLoading,
         getAllProduct,
+        getAllProductFunction
       }}
     >
       {children}

@@ -55,11 +55,11 @@ const SearchBar = () => {
           value={search}
           placeholder="Search here"
           onChange={(e) => setSearch(e.target.value)}
-          className=" bg-transparent placeholder-gray-400 rounded-lg px-12 sm:px-9 py-2 sm:w-52 w-52 outline-none text-white "
+          className=" bg-transparent placeholder-white rounded-lg px-12 sm:px-9 py-2 sm:w-52 w-52 outline-none text-white "
         />
         {search && (
           <span
-            className="text-gray-400 -translate-x-9 sm:-translate-x-13 pt-2 cursor-pointer"
+            className="text-white -translate-x-9 sm:-translate-x-13 pt-2 cursor-pointer"
             onClick={cleartext}
           >
             <span class="-mr-2 text-lg  material-symbols-outlined">cancel</span>

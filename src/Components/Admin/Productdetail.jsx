@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/Mycontext";
-import Category from "./../Category/Category";
+import Loader from "../Loader/Loader"
+import UpdateProduct from './../pages/Admin/UpdateProduct';
 
 const Productdetail = () => {
   const context = useContext(UserContext);
   const { loading, getAllProduct } = context;
+  const navigate = useNavigate();
   // console.log(getAllProduct)
   return (
     <div>
@@ -21,8 +23,8 @@ const Productdetail = () => {
       </div>
 
       {/* Loading  */}
-      <div className="flex justify-center relative top-20">
-        {/* {loading && <Loader />} */}
+      <div className="flex justify-center relative -top-20">
+        {loading && <Loader />}
       </div>
 
       {/* table  */}
@@ -105,7 +107,7 @@ const Productdetail = () => {
                   <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
                     {date}
                   </td>
-                  <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 text-green-500 cursor-pointer ">
+                  <td onClick={()=>navigate(`/updateproduct/:${id}`)} className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 text-green-500 cursor-pointer ">
                     Edit
                   </td>
                   <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 text-red-500 cursor-pointer ">
