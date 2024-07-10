@@ -4,9 +4,10 @@ import Hero from "../../Hero/Hero";
 import Category from "../../Category/Category";
 import Homepageproductcard from "../../HomepageProductcard/Homepageproductcard";
 import Track from "../../Track/Track";
-import ScrollToTop from "../../../ScrollToTop";
+
 import { UserContext } from "../../../Context/Mycontext";
 import Loader from "../../Loader/Loader";
+import ScrollToTop from './../../../ScrollToTop';
 
 const Home = () => {
   const name = useContext(UserContext);
@@ -16,7 +17,7 @@ const Home = () => {
       <Category />
       <Homepageproductcard />
       <Track />
-      <ScrollToTop />
+      <ScrollToTop/>
       
     </Layout>
   );

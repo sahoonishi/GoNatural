@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   const navlist = (
-    <ul className="flex justify-evenly font-DM md:gap-x-12 mb-3 md:mb-1 px-1 text-xs md:text-base text-white gap-x-1 li">
+    <ul className="flex justify-evenly font-DM md:gap-x-16 mb-3 md:mb-1 px-1 text-xs md:text-base text-white gap-x-1 li">
       <li>
         <Link to={"/"}>Home</Link>
       </li>

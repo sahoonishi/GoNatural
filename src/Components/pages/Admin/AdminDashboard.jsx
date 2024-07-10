@@ -3,15 +3,21 @@ import Productdetail from "../../Admin/Productdetail";
 import OrderDetail from "../../Admin/OrderDetail";
 import UserDetail from "../../Admin/UserDetail";
 import Layout from "../../Layout/Layout";
+import { useContext } from "react";
+import { UserContext } from "../../../Context/Mycontext";
+import ScrollToTop from './../../../ScrollToTop';
+
 
 const AdminDashboard = () => {
   const user = JSON.parse(localStorage.getItem('users'));
+  const context = useContext(UserContext);
+  const{getAllProduct}=context;
   return (
     <Layout>
       {/* Top */}
       <div className="top mb-5 px-5 mt-5">
-        <div className=" bg-pink-50 py-5 border border-pink-100 rounded-lg">
-          <h1 className=" text-center text-2xl font-DM font-extrabold text-pink-500 ">
+        <div className=" bg-green-50 py-5 border border-green-100 rounded-lg">
+          <h1 className=" text-center text-2xl font-DM font-extrabold text-white ">
             Admin Dashboard
           </h1>
         </div>
@@ -21,7 +27,7 @@ const AdminDashboard = () => {
         {/* Mid  */}
         <div className="mid mb-5">
           {/* main  */}
-          <div className=" bg-pink-50 py-5 rounded-xl border border-pink-100">
+          <div className=" bg-green-50 py-5 rounded-xl border border-green-100">
             {/* image  */}
             <div className="flex justify-center">
               <img
@@ -32,13 +38,13 @@ const AdminDashboard = () => {
             </div>
             {/* text  */}
             <div className="">
-              <h1 className=" text-center text-lg text-pink-500">
+              <h1 className=" text-center text-lg text-green-500">
                 <span className=" font-bold">Hello Admin :  </span>{user?.name}
               </h1>
-              <h1 className=" text-center text-lg text-pink-500">
+              <h1 className=" text-center text-lg text-green-500">
                 <span className=" font-bold">Email : </span>{user?.email}
               </h1>
-              <h1 className=" text-center text-lg text-pink-500">
+              <h1 className=" text-center text-lg text-green-500">
                 <span className=" font-bold">Date Joined : </span>{user?.date}
               </h1>
 
@@ -52,8 +58,8 @@ const AdminDashboard = () => {
             <TabList className="flex flex-wrap -m-4 text-center justify-center">
               {/* Total Products */}
               <Tab className="p-4 md:w-1/3 sm:w-1/2 w-full cursor-pointer">
-                <div className=" border bg-pink-50 hover:bg-pink-100 border-pink-100 px-4 py-3 rounded-xl">
-                  <div className="text-pink-500 w-12 h-12 mb-3 inline-block">
+                <div className=" border bg-green-50 hover:bg-green-100 border-green-100 px-4 py-3 rounded-xl">
+                  <div className="text-green-500 w-12 h-12 mb-3 inline-block">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width={50}
@@ -75,17 +81,17 @@ const AdminDashboard = () => {
                       <path d="m15 11-1 9" />
                     </svg>
                   </div>
-                  <h2 className="title-font font-medium text-3xl text-pink-400 fonts1">
-                    10
+                  <h2 className="title-font font-medium text-3xl text-green-400 fonts1">
+                    {getAllProduct.length}
                   </h2>
-                  <p className=" text-pink-500  font-bold">Total Products</p>
+                  <p className=" text-green-500  font-bold">Total Products</p>
                 </div>
               </Tab>
 
               {/* Total Order  */}
               <Tab className="p-4 md:w-1/4 sm:w-1/2 w-full cursor-pointer">
-                <div className=" border bg-pink-50 hover:bg-pink-100 border-pink-100 px-4 py-3 rounded-xl">
-                  <div className="text-pink-500 w-12 h-12 mb-3 inline-block">
+                <div className=" border bg-green-50 hover:bg-green-100 border-green-100 px-4 py-3 rounded-xl">
+                  <div className="text-green-500 w-12 h-12 mb-3 inline-block">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width={50}
@@ -106,17 +112,17 @@ const AdminDashboard = () => {
                       <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
                     </svg>
                   </div>
-                  <h2 className="title-font font-medium text-3xl text-pink-400 fonts1">
+                  <h2 className="title-font font-medium text-3xl text-green-400 fonts1">
                     10
                   </h2>
-                  <p className=" text-pink-500  font-bold">Total Order</p>
+                  <p className=" text-green-500  font-bold">Total Order</p>
                 </div>
               </Tab>
 
               {/* Total User  */}
               <Tab className="p-4 md:w-1/3 sm:w-1/2 w-full cursor-pointer">
-                <div className=" border bg-pink-50 hover:bg-pink-100 border-pink-100 px-4 py-3 rounded-xl">
-                  <div className="text-pink-500 w-12 h-12 mb-3 inline-block">
+                <div className=" border bg-green-50 hover:bg-green-100 border-green-100 px-4 py-3 rounded-xl">
+                  <div className="text-green-500 w-12 h-12 mb-3 inline-block">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width={50}
@@ -135,10 +141,10 @@ const AdminDashboard = () => {
                       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                     </svg>
                   </div>
-                  <h2 className="title-font font-medium text-3xl text-pink-400 fonts1">
+                  <h2 className="title-font font-medium text-3xl text-green-400 fonts1">
                     10
                   </h2>
-                  <p className=" text-pink-500  font-bold">Total Users</p>
+                  <p className=" text-green-500  font-bold">Total Users</p>
                 </div>
               </Tab>
             </TabList>
@@ -149,6 +155,7 @@ const AdminDashboard = () => {
           </Tabs>
         </div>
       </div>
+      <ScrollToTop/>
     </Layout>
   );
 };

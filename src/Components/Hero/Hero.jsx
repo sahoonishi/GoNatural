@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { fadeIn } from "../../variants";
 import CountUp from "react-countup";
+import { collection } from "firebase/firestore";
 
 const Hero = () => {
   const [hasLoaded, setHasLoaded] = useState(true);
@@ -13,9 +14,9 @@ const Hero = () => {
     }
   }, [hasLoaded]); // Empty dependency array ensures this runs only once on mount
   return (
-    <div className=" bg-gradient-to-b from-green-900 to-green-500 h-[320px] border-gray-800 position-relative w-full">
-      <div className="text-white flex justify-between">
-        <motion.div
+    <div className=" bg-gradient-to-b from-green-900 to-green-400 h-[355px] border-gray-800 position-relative w-full">
+      <div className="text-white flex sm:justify-between justify-center flex-wrap">
+        {/* <motion.div
           variants={fadeIn("right", 0.2)}
           initial={hasLoaded ? "hidden" : false} // Initial state based on hasLoaded
           animate={hasLoaded ? "show" : false} // Animate only after hasLoaded is true
@@ -25,21 +26,63 @@ const Hero = () => {
         >
           <div>Time </div>
           <div> to live</div> <div>for yourself</div>
-        </motion.div>
-        <div className="my-28 flex gap-10 font-DM text-lg font-bold mr-4">
-          <div className="grid">
-            <span className="text-2xl">
-              <CountUp end={77} /> <span>+</span>
-            </span>
-            <span className="secondaryText font-DM text-base">Awards Winning</span>
+        </motion.div> */}
+        <motion.h1
+          initial={{ y: "3rem", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 2,
+            type: "ease-in",
+          }}
+          className="text-white font-bold  flex font-DM text-4xl px-5  sm:text-5xl mt-6 flex-col sm:ml-14"
+        >
+          <div>Time </div>
+          <div> to live</div> <div>for yourself</div>
+          <div className="flex sm:gap-12 gap-3   mt-10 text-gray-300 text-xs sm:text-2xl">
+            <div className="grid ">
+              <span className="">
+                <CountUp end={77} /> <span>+</span>
+              </span>
+              <span className="secondaryText font-DM grid">
+                <span>Awards</span> <span className="sm:-mt-2">Winning</span>
+              </span>
+            </div>
+            <div className="grid">
+              <span className="">
+                <CountUp start={100} end={500} duration={4} /> <span>+</span>
+              </span>
+              <span className="font-DM grid">
+                <span>Happy</span>
+                <span className="sm:-mt-2">Customer</span>
+              </span>
+            </div>
+            <div className="grid">
+              <span className="">
+                <CountUp start={0} end={74} duration={2} /> <span>+</span>
+              </span>
+              <span className="font-DM grid ">
+                <span>Our</span> <span className="sm:-mt-2">products</span>{" "}
+                <span className="sm:-mt-2">count</span>
+              </span>
+            </div>
           </div>
-          <div className="grid">
-            <span className="text-2xl">
-              <CountUp start={100} end={500} duration={4} /> <span>+</span>
-            </span>
-            <span className="secondaryText text-base">Happy Customer</span>
+        </motion.h1>
+        {/* <motion.h1
+          initial={{ x: "3rem", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{
+            duration: 2,
+            type: "ease-in",
+          }}
+        >
+          <div className="my-5 mr-28 mx-auto sm:block block md:w-20 lg:w-96 w-20">
+            <img
+              className=" opacity-90"
+              src="public/image/hand-drawn-cruelty-free-vegan-concept.png"
+              alt=""
+            />
           </div>
-        </div>
+        </motion.h1> */}
       </div>
     </div>
   );

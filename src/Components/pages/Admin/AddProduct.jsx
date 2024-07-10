@@ -50,7 +50,7 @@ const AddProduct = () => {
       year: "numeric",
       hour: "numeric",
       minute: "numeric",
-    }), //
+    }),
   });
 
   const addproductfunction = async () => {
@@ -68,7 +68,7 @@ const AddProduct = () => {
     try {
       const productRef = collection(fireDB , "products");
       await addDoc(productRef, product);
-      toast.success(`${product.title } Added Successfully`);
+      toast.success(`${product.title.slice(0,15) } Added Successfully`);
       setLoading(false);
       setProduct({
         title: "",

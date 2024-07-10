@@ -18,55 +18,58 @@ import { Toaster } from "react-hot-toast";
 import ProtectedUser from "./ProtectedRoute/ProtectedUser";
 import { ProtectedAdmin } from "./ProtectedRoute/ProtectedAdmin";
 
+
 const App = () => {
   return (
-    <Mycontext>
-      <BrowserRouter>
-        <ScrollTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Nopage />} />
-          <Route path="/productinfo" element={<ProductInfo />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/allproduct" element={<Allproduct />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/Userdashboard"
-            element={
-              <ProtectedUser>
-                <Userdashboard />
-              </ProtectedUser>
-            }
-          />
-          <Route
-            path="/admindashboard"
-            element={
-              <ProtectedAdmin>
-                <AdminDashboard />
-              </ProtectedAdmin>
-            }
-          />
-          <Route
-            path="/addproduct"
-            element={
-              <ProtectedAdmin>
-                <AddProduct />
-              </ProtectedAdmin>
-            }
-          />
-          <Route
-            path="/updateproduct/:id"
-            element={
-              <ProtectedAdmin>
-                <UpdateProduct />
-              </ProtectedAdmin>
-            }
-          />
-        </Routes>
-        <Toaster />
-      </BrowserRouter>
-    </Mycontext>
+    
+      <Mycontext>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Nopage />} />
+            <Route path="/productinfo" element={<ProductInfo />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/allproduct" element={<Allproduct />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/Userdashboard"
+              element={
+                <ProtectedUser>
+                  <Userdashboard />
+                </ProtectedUser>
+              }
+            />
+            <Route
+              path="/admindashboard"
+              element={
+                <ProtectedAdmin>
+                  <AdminDashboard />
+                </ProtectedAdmin>
+              }
+            />
+            <Route
+              path="/addproduct"
+              element={
+                <ProtectedAdmin>
+                  <AddProduct />
+                </ProtectedAdmin>
+              }
+            />
+            <Route
+              path="/updateproduct/:id"
+              element={
+                <ProtectedAdmin>
+                  <UpdateProduct />
+                </ProtectedAdmin>
+              }
+            />
+          </Routes>
+
+          <Toaster />
+        </BrowserRouter>
+      </Mycontext>
+    
   );
 };
 
