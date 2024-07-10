@@ -34,34 +34,34 @@ const Hero = () => {
             duration: 2,
             type: "ease-in",
           }}
-          className="text-white font-bold  flex font-DM text-4xl px-5  sm:text-5xl mt-20 flex-col sm:ml-14"
+          className="text-white font-semibold  flex font-DM text-4xl px-5  sm:text-5xl mt-20 flex-col sm:ml-14"
         >
           <div>Time </div>
           <div> to live</div> <div>for yourself</div>
-          <div className="flex sm:gap-16 gap-3   mt-10 text-gray-300 text-xs sm:text-2xl">
+          <div className="flex sm:gap-16 gap-3 font-normal  mt-10 text-gray-300 ">
             <div className="grid ">
-              <span className="">
+              <span className="text-3xl">
                 <CountUp end={70} /> <span>+</span>
               </span>
-              <span className="secondaryText font-DM grid">
+              <span className="secondaryText font-DM grid text-base ">
                 <span>Awards</span> <span className="sm:-mt-2">Winning</span>
               </span>
             </div>
             <div className="grid">
-              <span className="">
-                <CountUp start={100} end={500} duration={4} /> <span>+</span>
+              <span className="text-3xl">
+                <CountUp start={190} end={467} duration={4} /> <span>+</span>
               </span>
-              <span className="font-DM grid">
+              <span className="font-DM grid text-base">
                 <span>Happy</span>
                 <span className="sm:-mt-2">Customer</span>
               </span>
             </div>
             <div className="grid">
-              <span className="">
+              <span className="text-3xl">
                 <CountUp start={0} end={90} duration={2} /> <span>+</span>
               </span>
-              <span className="font-DM grid ">
-                <span>Our</span> <span className="sm:-mt-2">products</span>{" "}
+              <span className="font-DM grid text-base">
+                <span className="">Products</span>{" "}
                 <span className="sm:-mt-2">count</span>
               </span>
             </div>

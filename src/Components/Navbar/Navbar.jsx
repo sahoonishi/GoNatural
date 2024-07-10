@@ -1,6 +1,6 @@
 import React from "react";
 import Searchbar from "../SearchBar/Searchbar";
-import { Link, useNavigate, useRouteError } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 
