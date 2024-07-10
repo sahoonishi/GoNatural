@@ -15,7 +15,8 @@ import Mycontext from "./Context/Mycontext";
 import { Toaster } from "react-hot-toast";
 import ProtectedUser from "./ProtectedRoute/ProtectedUser";
 import { ProtectedAdmin } from "./ProtectedRoute/ProtectedAdmin";
-import Category from "./Components/pages/Category/Category";
+import CategoryPage from "./Components/pages/category/CategoryPage";
+
 
 
 const App = () => {
@@ -63,7 +64,7 @@ const App = () => {
                 </ProtectedAdmin>
               }
             />
-            <Route path="/category/:categoryname" element={<Category/>}/>
+            <Route path="/category/:categoryname" element={<CategoryPage/>}/>
           </Routes>
 
           <Toaster />
