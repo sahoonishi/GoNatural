@@ -38,10 +38,10 @@ const Hero = () => {
         >
           <div>Time </div>
           <div> to live</div> <div>for yourself</div>
-          <div className="flex sm:gap-12 gap-3   mt-10 text-gray-300 text-xs sm:text-2xl">
+          <div className="flex sm:gap-16 gap-3   mt-10 text-gray-300 text-xs sm:text-2xl">
             <div className="grid ">
               <span className="">
-                <CountUp end={77} /> <span>+</span>
+                <CountUp end={70} /> <span>+</span>
               </span>
               <span className="secondaryText font-DM grid">
                 <span>Awards</span> <span className="sm:-mt-2">Winning</span>
@@ -58,7 +58,7 @@ const Hero = () => {
             </div>
             <div className="grid">
               <span className="">
-                <CountUp start={0} end={74} duration={2} /> <span>+</span>
+                <CountUp start={0} end={90} duration={2} /> <span>+</span>
               </span>
               <span className="font-DM grid ">
                 <span>Our</span> <span className="sm:-mt-2">products</span>{" "}
