@@ -18,7 +18,7 @@ const Navbar = () => {
         <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <Link to={"/allproducts"}>Products</Link>
+        <Link to={"/allproduct"}>Products</Link>
       </li>
       <li>
         <Link to={"/cart"} className="relative text-lg sm:text-xl">

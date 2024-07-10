@@ -36,8 +36,9 @@ const HomepageProductcard = () => {
                     />
                     <div className="p-6">
                       <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                        GoNatural
+                        GoNatural 
                       </h2>
+
                       <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
                         {title.substring(0, 15)}
                       </h1>

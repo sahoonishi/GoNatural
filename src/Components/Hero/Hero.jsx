@@ -14,10 +14,10 @@ const Hero = () => {
     }
   }, [hasLoaded]); // Empty dependency array ensures this runs only once on mount
   return (
-    <div className=" bg-gradient-to-b from-green-900 to-green-400 h-[355px] border-gray-800 position-relative w-full">
+    <div className=" bg-gradient-to-b from-green-900 to-green-400 h-[405px] border-gray-800 position-relative w-full">
       <div className="text-white flex sm:justify-between justify-center flex-wrap">
         {/* <motion.div
-          variants={fadeIn("right", 0.2)}
+          variants={fadeIn("down", 0.2)}
           initial={hasLoaded ? "hidden" : false} // Initial state based on hasLoaded
           animate={hasLoaded ? "show" : false} // Animate only after hasLoaded is true
           viewport={{ once: true, amount: 0.5 }}
@@ -28,13 +28,13 @@ const Hero = () => {
           <div> to live</div> <div>for yourself</div>
         </motion.div> */}
         <motion.h1
-          initial={{ y: "3rem", opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          initial= {hasLoaded ? { y: "3rem", opacity: 0 } :false} 
+          animate= {hasLoaded ? { y: 0, opacity: 1 } :false}
           transition={{
             duration: 2,
             type: "ease-in",
           }}
-          className="text-white font-bold  flex font-DM text-4xl px-5  sm:text-5xl mt-6 flex-col sm:ml-14"
+          className="text-white font-bold  flex font-DM text-4xl px-5  sm:text-5xl mt-20 flex-col sm:ml-14"
         >
           <div>Time </div>
           <div> to live</div> <div>for yourself</div>
