@@ -4,12 +4,27 @@ import { UserContext } from "../../Context/Mycontext";
 import Loader from "../Loader/Loader"
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+import { deleteDoc, doc } from "firebase/firestore";
+import { fireDB } from "../../Firebase/FirebaseConfig";
+import toast from "react-hot-toast";
 
 const Productdetail = () => {
   const context = useContext(UserContext);
-  const { loading, getAllProduct } = context;
+  const { loading, getAllProduct , setLoading , getAllProductFunction } = context;
   const navigate = useNavigate();
   // console.log(getAllProduct)
+  const deleteProduct = async (id) => {
+    setLoading(true)
+    try {
+        await deleteDoc(doc(fireDB, 'products', id))
+        toast.success('Product Deleted successfully')
+        getAllProductFunction();
+        setLoading(false)
+    } catch (error) {
+        console.log(error)
+        setLoading(false)
+    }
+}
   return (
     <div>
       <div className="py-5 flex justify-between items-center">
@@ -113,7 +128,7 @@ const Productdetail = () => {
                   <td onClick={()=>navigate(`/updateproduct/${id}`)} className=" text h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 cursor-pointer hover:text-blue-500 ">
                     <FaEdit  type="button" className="bg-green-700 text-white p-1.5 rounded-lg hover:bg-green-400 hover:scale-105 text-3xl mx-auto"/>
                   </td>
-                  <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100  cursor-pointer ">
+                  <td onClick={()=>deleteProduct(id)} className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100  cursor-pointer ">
                   <MdDelete  className="bg-red-700 text-white rounded-lg hover:bg-red-400 hover:scale-105 text-3xl mx-auto p-1"/>
                   </td>
                 </tr>
