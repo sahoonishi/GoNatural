@@ -54,7 +54,7 @@ const UpdateProduct = () => {
     }),
   });
 
-  // =================================FUNCTON TO GET SINGLE PRODUCT==============================
+  // ===========================FUNCTON TO GET existing product data============================
 
   const getsingle = async () => {
     setLoading(true);

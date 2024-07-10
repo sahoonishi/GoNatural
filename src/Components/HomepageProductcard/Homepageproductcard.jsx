@@ -27,7 +27,7 @@ const HomepageProductcard = () => {
               const { image, title, price , id } = item;
               return (
                 <div key={id} className="p-4 w-96 justify-center md:w-1/3 lg:w-1/4 ">
-                  <div className="h-96 rounded-3xl overflow-hidden cursor-pointer hover:scale-110 transition-all outline-none" onClick={()=>navigate('/productinfo')}>
+                  <div className="h-96 rounded-3xl overflow-hidden cursor-pointer hover:scale-110 transition-all outline-none" onClick={()=>navigate(`/productinfo/${id}`)}>
                     <img
                       
                       className="md:w-28 md:h-24 lg:h-40 lg:w-44  h-44 w-1/2  ml-9 mt-3 rounded-2xl"
