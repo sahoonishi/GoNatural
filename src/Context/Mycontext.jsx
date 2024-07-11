@@ -11,14 +11,14 @@ const Mycontext = ({ children }) => {
   const getAllProductFunction = async () => {
     setLoading(true);
     try {
-      const q = query(collection(fireDB, "products"), orderBy("time"));
+      const q = query(collection(fireDB, "products"), orderBy("date"));
       const data = onSnapshot(q, (QuerySnapshot) => {
         let productArray = [];
         QuerySnapshot.forEach((doc) => {
           productArray.push({ ...doc.data(), id: doc.id });
         });
         setGetAllProduct(productArray);
-        console.log(getAllProduct);
+[]
         
         setLoading(false);
       });

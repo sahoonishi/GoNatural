@@ -8,10 +8,12 @@ import { UserContext } from "../../../Context/Mycontext";
 import ScrollToTop from './../../../ScrollToTop';
 
 
+
 const AdminDashboard = () => {
   const user = JSON.parse(localStorage.getItem('users'));
   const context = useContext(UserContext);
   const{getAllProduct}=context;
+
   return (
     <Layout>
       {/* Top */}
@@ -47,6 +49,7 @@ const AdminDashboard = () => {
               <h1 className=" text-center text-lg text-green-500">
                 <span className=" font-bold">Date Joined : </span>{user?.date}
               </h1>
+              
 
             </div>
           </div>

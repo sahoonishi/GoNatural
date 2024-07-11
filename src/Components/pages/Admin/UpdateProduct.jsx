@@ -44,7 +44,7 @@ const UpdateProduct = () => {
     image: "",
     category: "",
     description: "",
-    time: Timestamp.now(),
+    
     date: new Date().toLocaleString("en-US", {
       month: "short",
       day: "2-digit",
@@ -68,7 +68,7 @@ const UpdateProduct = () => {
         image: singleproduct.image,
         category: singleproduct.category,
         description: singleproduct.description,
-        time: singleproduct.time,
+        // time: singleproduct.time,
         date: singleproduct.date,
       });
     } catch (error) {

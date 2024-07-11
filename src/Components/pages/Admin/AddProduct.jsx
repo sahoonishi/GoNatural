@@ -43,7 +43,7 @@ const AddProduct = () => {
     description: "",
     category: "",
     quantity: 1,
-    time: Timestamp.now(),
+    // time: Timestamp.now(),
     date: new Date().toLocaleString("en-US", {
       month: "short",
       day: "2-digit",

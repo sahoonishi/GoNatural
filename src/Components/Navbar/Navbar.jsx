@@ -4,10 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 
+
 const Navbar = () => {
+ 
   const user = JSON.parse(localStorage.getItem("users"));
   const navigate = useNavigate();
   const logout = () => {
+
     localStorage.removeItem("users");
     navigate("/login");
   };

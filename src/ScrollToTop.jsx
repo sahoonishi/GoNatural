@@ -29,7 +29,7 @@ window.addEventListener('scroll', toggleVisible);
 return ( 
 	<Button> 
 	<FaArrowCircleUp onClick={scrollToTopp} 
-	style={{display: visible ? 'inline' : 'none'}} className='mb-96 left-90 text-3xl hover:scale-125 transition-all'/> 
+	style={{display: visible ? 'inline' : 'none'}} className='md:mb-96 md:left-90 md:text-3xl md:hover:scale-125 md:transition-all sm:text-2xl text-xl 	mb-[99px] -translate-x-2 -translate-y-28 transition-all'/> 
 	</Button> 
 ); 
 } 

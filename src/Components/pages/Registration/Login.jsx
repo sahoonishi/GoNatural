@@ -6,9 +6,10 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, fireDB } from "../../../Firebase/FirebaseConfig";
 import Loader from "../../Loader/Loader";
-import Layout from "../../Layout/Layout";
+
 
 const Login = () => {
+  
   const context = useContext(UserContext);
   const { loading, setLoading } = context;
 
@@ -56,6 +57,7 @@ const Login = () => {
             password: "",
           });
           toast.success("Login Successfully");
+          
           setLoading(false);
           if (user.role === "user") {
             navigate("/", { replace: true });
@@ -74,6 +76,7 @@ const Login = () => {
       toast.error("Login Failed");
     }
   };
+ 
   return (
     <div className="flex justify-center items-center h-screen">
       {loading == true ? (

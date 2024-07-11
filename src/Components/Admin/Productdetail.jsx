@@ -8,6 +8,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { fireDB } from "../../Firebase/FirebaseConfig";
 import toast from "react-hot-toast";
 
+
 const Productdetail = () => {
   const context = useContext(UserContext);
   const { loading, getAllProduct , setLoading , getAllProductFunction } = context;
@@ -25,6 +26,8 @@ const Productdetail = () => {
         setLoading(false)
     }
 }
+
+
   return (
     <div>
       <div className="py-5 flex justify-between items-center">
@@ -117,7 +120,7 @@ const Productdetail = () => {
                   <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
                     ₹{price}
                   </td>
-                  <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
+                  <td  className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
                     {category}
                   </td>
                   <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">

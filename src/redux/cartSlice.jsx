@@ -1,34 +1,44 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialstate=[];
 
- export const cartSlice = createSlice({
+const initialState = [];
+
+export const cartSlice = createSlice({
   name: "cart",
-  initialstate,
+  initialState,
   reducers: {
-    increment(state, action){
-      state.map((item) => {
-        if (item.id === action.payload.id) {
-          item.quantity++;
-        }
-      });
-      return item;
-    },
-    removeFromCart(state, action){
-      return state.filter((item) => item.id !== action.payload.id);
-    },
-    addtocart(state, action){
+    addToCart(state, action) {
       state.push(action.payload);
     },
-    decrement(state, action){
-      state.map((item) => {
-        if (item.id === action.payload.id && item.quantity > 1) {
-          item.quantity--;
+    deleteFromCart(state, action) {
+      return state.filter((item) => item.id != action.payload.id);
+    },
+    incrementQuantity: (state, action) => {
+      state = state.map((item) => {
+        if (item.id === action.payload) {
+          item.quantity++;
         }
+        return item;
       });
-      return item;
-    }
+    },
+    decrementQuantity: (state, action) => {
+      state = state.map((item) => {
+        if (item.quantity !== 1) {
+          if (item.id === action.payload) {
+            item.quantity--;
+          }
+        }
+        return item;
+      });
+    },
   },
 });
 
-export const { increment, decrement, removeFromCart,addtocart } = cartSlice.actions;
+// Action creators are generated for each case reducer function
+export const {
+  addToCart,
+  deleteFromCart,
+  incrementQuantity,
+  decrementQuantity,
+} = cartSlice.actions;
+
 export default cartSlice.reducer;

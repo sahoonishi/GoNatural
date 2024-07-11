@@ -62,7 +62,7 @@ const SearchBar = () => {
             className="text-white -translate-x-9 sm:-translate-x-13 pt-2 cursor-pointer"
             onClick={cleartext}
           >
-            <span class="-mr-2 text-lg  material-symbols-outlined">cancel</span>
+            <span className="-mr-2 text-lg  material-symbols-outlined">cancel</span>
           </span>
         )}
       </div>
