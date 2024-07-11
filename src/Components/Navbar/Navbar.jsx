@@ -80,7 +80,8 @@ const Navbar = () => {
           <Link to={"/"}>
             <h2 className="font-bold text-center text-white text-xl lg:text-2xl font-DM hover:scale-90 transition-all text-text-decoration-line-through relative z-50">
               GoNatural
-              <span className="absolute -top-2 left-14 bg-orange-900 rounded-tl-full rounded-br-full -rotate-12 w-4 h-4 hover:scale-90 transition-all border-s-4"> </span>
+              
+              <span className="absolute -top-2 lg:left-14 bg-orange-900 rounded-tl-full rounded-br-full -rotate-12 w-4 h-4 hover:scale-90 transition-all border-s-4"> </span>
               
             </h2>
 
