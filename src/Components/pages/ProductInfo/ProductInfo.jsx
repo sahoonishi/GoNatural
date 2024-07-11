@@ -44,7 +44,7 @@ const ProductInfo = () => {
                 <div className="">
                   <div className="">
                     <img
-                      className=" h-52 lg:h-96 rounded-lg"
+                      className=" h-52 lg:h-52 lg:w-52 mx-auto rounded-lg object-contain"
                       src={product.image}
                       alt=""
                     />

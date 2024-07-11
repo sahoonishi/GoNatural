@@ -84,7 +84,7 @@ const Signup = () => {
         email: users.user.email,
         uid: users.user.uid,
         role: userSignup.role,
-        time: Timestamp.now(),
+        // time: Timestamp.now(),
         date: new Date().toLocaleString("en-US", {
           month: "short",
           day: "2-digit",

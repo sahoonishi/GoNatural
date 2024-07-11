@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { json, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/Mycontext";
 import Loader from "../Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,18 +11,30 @@ const HomepageProductcard = () => {
   const { getAllProduct, loading } = useContext(UserContext);
 
   const cartItems = useSelector((state) => state.cart);
+  
+
+
   const dispatch = useDispatch();
 
   const addCart = (item) => {
     // console.log(item)
     dispatch(addToCart(item));
-    toast.success("Add to cart");
+    toast.success("Added to cart");
   };
 
   const deleteCart = (item) => {
     dispatch(deleteFromCart(item));
-    toast.success("Delete cart");
+    toast.success("Deleted from cart");
   };
+
+  // STORE CART VALUE IN LOCAL STORAGE
+
+  useEffect(() => {
+    
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    
+  }, [cartItems]);
+
   return (
     <div className="mt-10 font-DM">
       {/* Heading  */}
@@ -45,21 +57,11 @@ const HomepageProductcard = () => {
                   key={id}
                   className="p-4 w-96 justify-center md:w-1/3 lg:w-1/4 "
                 >
-                  <div
-                    className="h-96 rounded-3xl overflow-hidden cursor-pointer hover:scale-110 transition-all outline-none"
-                    onClick={() => navigate(`/productinfo/${id}`)}
-                  >
+                  <div className="h-96 rounded-3xl overflow-hidden cursor-pointer hover:scale-105 transition-all outline-none">
+                    {/* OBJECT-CONTAIN           FOR FIT AN IMAGE */}
 
-
-
-
-                  {/* OBJECT CONTAIN FOR FIT IMAGE */}
-
-
-
-
-                  
                     <img
+                      onClick={() => navigate(`/productinfo/${id}`)}
                       className="md:w-28 md:h-24 lg:h-40 lg:w-40 object-contain  h-44 w-1/2  ml-9 mt-3 rounded-2xl"
                       src={image}
                       alt="blog"
@@ -82,12 +84,16 @@ const HomepageProductcard = () => {
                           <button
                             onClick={() => deleteCart(item)}
                             className=" bg-red-700 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold"
-                          >Delete from cart</button>
+                          >
+                            Delete from cart
+                          </button>
                         ) : (
                           <button
                             onClick={() => addCart(item)}
                             className=" bg-green-400 hover:bg-green-500 w-full text-white py-[4px] rounded-lg font-bold"
-                          >Add to cart</button>
+                          >
+                            Add to cart
+                          </button>
                         )}
 
                         {/* <button className=" bg-green-400 hover:bg-green-500 w-full text-white py-[4px] rounded-lg font-bold">

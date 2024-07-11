@@ -3,17 +3,17 @@ import Searchbar from "../SearchBar/Searchbar";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { HiMiniShoppingCart } from "react-icons/hi2";
-
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
- 
   const user = JSON.parse(localStorage.getItem("users"));
   const navigate = useNavigate();
   const logout = () => {
-
     localStorage.removeItem("users");
     navigate("/login");
   };
+
+  const Kart_value = useSelector((store) => store.cart);
 
   const navlist = (
     <ul className="flex justify-evenly font-DM md:gap-x-16 mb-3 md:mb-1 px-1 text-xs md:text-base text-white gap-x-1 li">
@@ -26,8 +26,8 @@ const Navbar = () => {
       <li>
         <Link to={"/cart"} className="relative text-lg sm:text-xl">
           <HiMiniShoppingCart />
-          <span className="absolute -top-2 left-4 bg-gray-200 rounded-full text-black text-xs w-5 text-center shadow-lg z-1 border-x-2 border-y-2 font-DM outline-none">
-            9
+          <span className="absolute -top-2 left-4 bg-orange-800 rounded-full text-black text-xs w-5 text-center shadow-lg z-1 border-x-2 border-y-2 font-DM outline-none">
+            {Kart_value.length}
           </span>
         </Link>
       </li>
@@ -78,9 +78,12 @@ const Navbar = () => {
         {/* left */}
         <div className="left py-3 lg:py-0">
           <Link to={"/"}>
-            <h2 className="font-bold text-center text-white text-xl lg:text-2xl font-DM hover:scale-90 transition-all text-text-decoration-line-through ">
+            <h2 className="font-bold text-center text-white text-xl lg:text-2xl font-DM hover:scale-90 transition-all text-text-decoration-line-through relative z-50">
               GoNatural
+              <span className="absolute -top-2 left-14 bg-orange-900 rounded-tl-full rounded-br-full -rotate-12 w-4 h-4 hover:scale-90 transition-all border-s-4"> </span>
+              
             </h2>
+
           </Link>
         </div>
         {/* right */}
