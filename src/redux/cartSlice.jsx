@@ -15,6 +15,10 @@ export const cartSlice = createSlice({
     deleteFromCart(state, action) {
       return state.filter((item) => item.id !== action.payload.id);
     },
+    deleteAll:(state)=>{
+        return state=[];
+
+    },
     incrementQuantity:(state, action)=> {
       state = state.map((item) => {
         
@@ -45,6 +49,7 @@ export const {
   deleteFromCart,
   incrementQuantity,
   decrementQuantity,
+  deleteAll,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

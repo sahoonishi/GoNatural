@@ -8,6 +8,7 @@ import { addDoc, collection, Timestamp } from "firebase/firestore";
 import Loader from "../../Loader/Loader";
 import Layout from "../../Layout/Layout";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const Signup = () => {
   const { loading, setLoading } = useContext(UserContext);
@@ -58,6 +59,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
+    // cartItems:"",
     role: "user",
   });
 
@@ -79,9 +81,12 @@ const Signup = () => {
         userSignup.password
       );
 
+      // const cartItems = useSelector((state)=>state.cart);
+      // console.log(cartItems);
       const user = {
         name: userSignup.name,
         email: users.user.email,
+        // cartItems: cartItems,
         uid: users.user.uid,
         role: userSignup.role,
         // time: Timestamp.now(),

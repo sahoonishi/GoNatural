@@ -34,10 +34,11 @@ const Hero = () => {
             duration: 2,
             type: "ease-in",
           }}
-          className="text-white font-semibold  flex font-DM text-4xl px-5  sm:text-5xl mt-20 flex-col sm:ml-14"
+          className="text-white font-semibold  flex font-DM text-4xl px-5  sm:text-5xl mt-16 flex-col sm:ml-14"
         >
           <div>Time </div>
           <div> to live</div> <div>for yourself</div>
+
           <div className="flex sm:gap-16 gap-3 font-normal  mt-10 text-gray-300 ">
             <div className="grid ">
               <span className="text-3xl">

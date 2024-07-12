@@ -11,16 +11,17 @@ const HomepageProductcard = () => {
   const { getAllProduct, loading } = useContext(UserContext);
 
   const cartItems = useSelector((state) => state.cart);
- 
-  
 
+  const user = JSON.parse(localStorage.getItem("users"));
 
   const dispatch = useDispatch();
 
   const addCart = (item) => {
     // console.log(item)
+    if(user){
     dispatch(addToCart(item));
-    toast.success("Added to cart");
+    toast.success("Added to cart");}
+    else{toast.error("please login");}
   };
 
   const deleteCart = (item) => {
@@ -31,9 +32,7 @@ const HomepageProductcard = () => {
   // STORE CART VALUE IN LOCAL STORAGE
 
   useEffect(() => {
-    
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
   return (
@@ -90,7 +89,7 @@ const HomepageProductcard = () => {
                           </button>
                         ) : (
                           <button
-                            onClick={() => addCart(item)}
+                            onClick={ () => addCart(item)}
                             className=" bg-green-400 hover:bg-green-500 w-full text-white py-[4px] rounded-lg font-bold"
                           >
                             Add to cart

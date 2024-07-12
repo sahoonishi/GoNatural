@@ -50,7 +50,7 @@ const Login = () => {
         const data = onSnapshot(q, (QuerySnapshot) => {
           let user;
           QuerySnapshot.forEach((doc) => (user = doc.data()));
-          console.log(user);
+          // console.log(user);
           localStorage.setItem("users", JSON.stringify(user));
           setUserLogin({
             email: "",

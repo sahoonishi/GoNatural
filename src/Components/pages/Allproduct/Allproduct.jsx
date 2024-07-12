@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 
 const AllProduct = () => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("users"));
   const { getAllProduct, loading } = useContext(UserContext);
 
   const cartItems = useSelector((store) => store.cart);
@@ -20,8 +21,13 @@ const AllProduct = () => {
   // ADD TO CART FUNCTION
 
   const addcart = (item) => {
-    dispatch(addToCart(item));
-    toast.success("Product added to cart successfully!");
+        if(user){
+          dispatch(addToCart(item));
+          toast.success("Product added to cart successfully!");
+        }
+        else{
+          toast.error("Please login");
+        }
   };
   const deletecart = (item) => {
     dispatch(deleteFromCart(item));

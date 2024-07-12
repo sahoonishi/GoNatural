@@ -5,11 +5,18 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { fireDB } from "../../../Firebase/FirebaseConfig";
 import Loader from "../../Loader/Loader";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addToCart, deleteFromCart } from "../../../redux/cartSlice";
+import { toast } from 'react-hot-toast';
 
 const ProductInfo = () => {
   const { loading, setLoading } = useContext(UserContext);
   const [product, setProduct] = useState("");
   const { id } = useParams();
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("users"));
 
   // GET PRODUCT INFO OF CLICKED ITEM
 
@@ -17,15 +24,38 @@ const ProductInfo = () => {
     setLoading(true);
     try {
       const productTemp = await getDoc(doc(fireDB, "products", id));
-      const singleProduct = productTemp.data();
-      
-      setProduct(singleProduct);
+
+      setProduct({ ...productTemp.data(), id: productTemp.id });
       setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
   };
+
+
+
+  const addCart = (item) => {
+    // console.log(item)
+    if(user){
+      dispatch(addToCart(item));
+      toast.success("Add to cart");
+    }
+    else{toast.error("please login");}
+
+  };
+
+  const deleteCart = (item) => {
+    dispatch(deleteFromCart(item));
+    toast.success("Delete cart");
+  };
+
+  // console.log(cartItems)
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   useEffect(() => {
     getProduct();
   }, []);
@@ -130,9 +160,15 @@ const ProductInfo = () => {
 
                   <div className="mb-6 " />
                   <div className="flex flex-wrap items-center mb-6">
-                    <button className="w-full px-4 py-3 text-center text-white bg-green-400 border border-green-400  hover:bg-green-600 hover:text-gray-100 rounded-xl">
-                      Add to cart
-                    </button>
+                    {cartItems.some((p) => p.id === product.id) ? (
+                      <button onClick={()=>deleteCart(product)} className="w-full px-4 py-3 text-center text-white bg-red-400 border border-red-400  hover:bg-red-600 hover:text-gray-100 rounded-xl">
+                        Delete from cart
+                      </button>
+                    ) : (
+                      <button onClick={()=>addCart(product)} className="w-full px-4 py-3 text-center text-white bg-green-400 border border-green-400  hover:bg-green-600 hover:text-gray-100 rounded-xl">
+                        Add to cart
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

@@ -6,12 +6,15 @@ import {
   deleteFromCart,
   incrementQuantity,
 } from "../../../redux/cartSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import React from "react";
 import Lottie from "react-lottie";
 import animationData from "../../../../public/image/music/Animation - 1720790306666.json";
+import BuyNow from "../../BuyNow/BuyNow";
+import { fireDB } from "../../../Firebase/FirebaseConfig";
+import { addDoc } from "firebase/firestore";
 
 const CartPage = () => {
   const cartItems = useSelector((store) => store.cart);
@@ -63,6 +66,68 @@ const CartPage = () => {
     .map((item) => item.price * item.quantity)
     .reduce((prevValue, currValue) => prevValue + currValue, 0);
   //console.log(cartItemsTotall);
+
+  //=================================BUY NOW FUNCTION===============================
+
+  const user = JSON.parse(localStorage.getItem("users"));
+
+  // ADDRESS INFO STATE
+
+  const [address, setaddress] = useState({
+    name: "",
+    address: "",
+    pincode: "",
+    mobile: "",
+    date: new Date().toLocaleString("en-US", {
+      month: "long",
+      day: "2-digit",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    }),
+  });
+
+  // BUYNOW FUNCTION
+
+  const buyNow = () => {
+    if (
+      address.name === "" ||
+      address.address === "" ||
+      address.pincode === "" ||
+      address.mobileNumber === ""
+    ) {
+      return toast.error("All Fields are required");
+    }
+    const orderInfo = {
+      cartItems,
+      address,
+      email: user.email,
+      userid: user.uid,
+      status: "confirmed",
+      // time: Timestamp.now(),
+      date: new Date().toLocaleString("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      }),
+    };
+
+    try {
+      const orderRef = collection(fireDB, "order");
+      addDoc(orderRef, orderInfo);
+      setaddress({
+        name: "",
+        address: "",
+        pincode: "",
+        mobile: "",
+      });
+      toast.success("Order Placed Successfull");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Layout>
@@ -212,9 +277,9 @@ const CartPage = () => {
                   </dl>
                   <div className="px-2 pb-4 font-medium text-green-700">
                     <div className="flex gap-4 mb-6">
-                      <button className="w-full px-4 py-3 text-center text-gray-100 bg-green-500 border border-transparent dark:border-gray-700 hover:border-gray-500 hover:text-white hover:bg-green-400 rounded-xl">
-                        Buy now
-                      </button>
+                      {user ? <BuyNow /> : 
+                      
+                      <Navigate to={"/login"} />}
                     </div>
                   </div>
                 </div>
@@ -233,7 +298,7 @@ const CartPage = () => {
 
           <div className="mx-auto -mt-32">
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/allproduct")}
               type="button"
               className="bg-green-400 hover:bg-green-300 text-white text-2xl px-3 py-3 rounded-xl mx-auto font-DM"
             >
