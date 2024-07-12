@@ -15,10 +15,13 @@ export const cartSlice = createSlice({
     deleteFromCart(state, action) {
       return state.filter((item) => item.id !== action.payload.id);
     },
-    incrementQuantity: (state, action) => {
+    incrementQuantity:(state, action)=> {
       state = state.map((item) => {
+        
         if (item.id === action.payload) {
+          
           item.quantity++;
+          console.log(item.quantity);
         }
         return item;
       });

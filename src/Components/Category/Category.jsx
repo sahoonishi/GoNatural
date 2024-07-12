@@ -1,4 +1,7 @@
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addToCart } from "../../redux/cartSlice";
+import toast from "react-hot-toast";
 
 // category
 const category = [
@@ -37,6 +40,7 @@ const category = [
 
 const Category = () => {
   const navigate = useNavigate();
+
   return (
     <div >
       <div className="flex flex-col mt-5 ">

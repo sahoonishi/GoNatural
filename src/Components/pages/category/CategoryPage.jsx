@@ -1,13 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Layout from "../../Layout/Layout";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../../Context/Mycontext";
 import Loader from "../../Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, deleteFromCart } from "../../../redux/cartSlice";
+import toast from "react-hot-toast";
 
 const CategoryPage = () => {
   const { categoryname } = useParams();
   const { loading, setLoading, getAllProduct } = useContext(UserContext);
   const navigate = useNavigate();
+
+
+
+  const cartItems = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
+
+  // ADD TO CART FUNCTION
+
+  const addcart = (item) => {
+    dispatch(addToCart(item));
+    toast.success("Product added to cart successfully!");
+  };
+  const deletecart = (item) => {
+    dispatch(deleteFromCart(item));
+    toast.success("Product removed from cart successfully!");
+  };
+
+  // STORE IN LOCALSTORAGE
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   // FILTER PRODUCT ON THE BASIS OF CATEGORY
   console.log(getAllProduct);
@@ -42,12 +66,13 @@ const CategoryPage = () => {
                     >
                       <div
                         className="h-96 rounded-3xl overflow-hidden cursor-pointer hover:scale-110 transition-all outline-none"
-                        onClick={() => navigate(`/productinfo/${id}`)}
+                       
                       >
                         <img
-                          className="md:w-28 md:h-24 lg:h-40 lg:w-44  h-44 w-1/2  ml-9 mt-3 rounded-2xl"
+                          className=" object-contain md:w-28 md:h-24 lg:h-40 lg:w-44  h-44 w-1/2  ml-9 mt-3 rounded-2xl"
                           src={image}
                           alt="blog"
+                          onClick={() => navigate(`/productinfo/${id}`)}
                         />
                         <div className="p-6">
                           <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
@@ -63,10 +88,16 @@ const CategoryPage = () => {
                           </h1>
 
                           <div className="flex justify-center ">
-                            <button className=" bg-green-400 hover:bg-green-500 w-full text-white py-[4px] rounded-lg font-bold">
+                          {cartItems.some((p) => p.id === item.id) ? (
+                            <button onClick={()=>deletecart(item)} className=" bg-red-500 hover:bg-red-600 w-full text-white py-[4px] rounded-lg font-bold">
+                              Delete from cart
+                            </button>
+                          ) : (
+                            <button onClick={()=>addcart(item)} className=" bg-green-500 hover:bg-green-600 w-full text-white py-[4px] rounded-lg font-bold">
                               Add To Cart
                             </button>
-                          </div>
+                          )}
+                        </div>
                         </div>
                       </div>
                     </div>

@@ -68,7 +68,7 @@ const UpdateProduct = () => {
         image: singleproduct.image,
         category: singleproduct.category,
         description: singleproduct.description,
-        // time: singleproduct.time,
+        quantity: singleproduct.quantity,
         date: singleproduct.date,
       });
     } catch (error) {
