@@ -19,7 +19,7 @@ const products = [
 const Userdashboard = () => {
   const user = JSON.parse(localStorage.getItem("users"));
   const { getAllOrder, loading } = useContext(UserContext);
-  console.log(getAllOrder);
+  
 
   return (
     <Layout>
@@ -60,94 +60,107 @@ const Userdashboard = () => {
             {/* main 2 */}
             {getAllOrder
               .filter((obj) => obj.userid === user.uid)
-              .map((order , index) => {
+              .map((order, index) => {
                 return (
-                  <div className="mt-5 flex flex-col overflow-hidden rounded-xl border border-pink-100 md:flex-row">
-                    {/* main 3  */}
-                    <div className="w-full border-r border-green-100 bg-green-50 md:max-w-xs">
-                      {/* left  */}
-                      <div className="p-8">
-                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-1 font-DM">
-                          <div className="mb-4">
-                            <div className="text-sm font-semibold text-black">
-                              Order Id
-                            </div>
-                            <div className="text-sm font-medium text-gray-900">
-                              #74557994327
+                  <div key={index}>
+                    {order.cartItems.map((item, index) => {
+                        const {id , category , image , quantity , price , title , date} = item;
+                        
+                      return (
+                        <div
+                          key={index}
+                          className="mt-5 flex flex-col overflow-hidden rounded-xl border border-pink-100 md:flex-row"
+                        >
+                          {/* main 3  */}
+                          <div className="w-full border-r border-green-100 bg-green-50 md:max-w-xs">
+                            {/* left  */}
+                            <div className="p-8">
+                              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-1 font-DM">
+                                <div className="mb-4">
+                                  <div className="text-sm font-semibold text-black">
+                                    Order Id
+                                  </div>
+                                  <div className="text-sm font-medium text-gray-900">
+                                    {id}
+                                  </div>
+                                </div>
+
+                                <div className="mb-4">
+                                  <div className="text-sm font-semibold">
+                                    Date
+                                  </div>
+                                  <div className="text-sm font-medium text-gray-900">
+                                    {order.date}
+                                  </div>
+                                </div>
+
+                                <div className="mb-4">
+                                  <div className="text-sm font-semibold">
+                                    Total Amount
+                                  </div>
+                                  <div className="text-sm font-medium text-gray-900">
+                                    Rs.{price * quantity + 99}
+                                  </div>
+                                </div>
+
+                                <div className="mb-4">
+                                  <div className="text-sm font-semibold">
+                                    Order Status
+                                  </div>
+                                  <div className="text-sm font-medium text-green-800 first-letter:uppercase">
+                                    {order.status}
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           </div>
+                          {/* right  */}
+                          <div className="flex-1">
+                            <div className="p-8">
+                              <ul className="-my-7 divide-y divide-gray-200">
+                                
+                                  <li
+                                    
+                                    className="flex flex-col justify-between space-x-5 py-7 md:flex-row"
+                                  >
+                                    <div className="flex flex-1 items-stretch">
+                                      <div className="flex-shrink-0">
+                                        <img
+                                          className="h-20 w-20 rounded-lg border border-gray-200 object-contain"
+                                          src={image}
+                                          alt="image"
+                                        />
+                                      </div>
 
-                          <div className="mb-4">
-                            <div className="text-sm font-semibold">Date</div>
-                            <div className="text-sm font-medium text-gray-900">
-                              4 March, 2024
-                            </div>
-                          </div>
+                                      <div className="ml-5 flex flex-col justify-between">
+                                        <div className="flex-1">
+                                          <p className="text-sm font-bold text-gray-900">
+                                            {title}
+                                          </p>
+                                          <p className="mt-1.5 text-sm font-medium text-gray-500">
+                                            {category}
+                                          </p>
+                                        </div>
 
-                          <div className="mb-4">
-                            <div className="text-sm font-semibold">
-                              Total Amount
-                            </div>
-                            <div className="text-sm font-medium text-gray-900">
-                              ₹200
-                            </div>
-                          </div>
+                                        <p className="mt-4 text-sm font-medium text-gray-500">
+                                          x {quantity}
+                                        </p>
+                                      </div>
+                                    </div>
 
-                          <div className="mb-4">
-                            <div className="text-sm font-semibold">
-                              Order Status
-                            </div>
-                            <div className="text-sm font-medium text-green-800">
-                              Confirmed
+                                    <div className="ml-auto flex flex-col items-end justify-between">
+                                      <p className="text-right text-sm font-bold text-gray-900">
+                                        Rs.{price}
+                                      </p>
+                                    </div>
+                                  </li>
+                                
+                              </ul>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    {/* right  */}
-                    <div className="flex-1">
-                      <div className="p-8">
-                        <ul className="-my-7 divide-y divide-gray-200">
-                          {products.map((product) => (
-                            <li
-                              key={product.id}
-                              className="flex flex-col justify-between space-x-5 py-7 md:flex-row"
-                            >
-                              <div className="flex flex-1 items-stretch">
-                                <div className="flex-shrink-0">
-                                  <img
-                                    className="h-20 w-20 rounded-lg border border-gray-200 object-contain"
-                                    src={product.imageSrc}
-                                    alt={product.imageSrc}
-                                  />
-                                </div>
-
-                                <div className="ml-5 flex flex-col justify-between">
-                                  <div className="flex-1">
-                                    <p className="text-sm font-bold text-gray-900">
-                                      {product.name}
-                                    </p>
-                                    <p className="mt-1.5 text-sm font-medium text-gray-500">
-                                      {product.color}
-                                    </p>
-                                  </div>
-
-                                  <p className="mt-4 text-sm font-medium text-gray-500">
-                                    x {product.quantity}
-                                  </p>
-                                </div>
-                              </div>
-
-                              <div className="ml-auto flex flex-col items-end justify-between">
-                                <p className="text-right text-sm font-bold text-gray-900">
-                                  {product.price}
-                                </p>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+                      );
+                    })}
                   </div>
                 );
               })}

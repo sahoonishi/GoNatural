@@ -1,6 +1,14 @@
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
 import { fireDB } from "../Firebase/FirebaseConfig";
+import toast from "react-hot-toast";
 export const UserContext = createContext();
 
 const Mycontext = ({ children }) => {
@@ -18,7 +26,7 @@ const Mycontext = ({ children }) => {
           productArray.push({ ...doc.data(), id: doc.id });
         });
         setGetAllProduct(productArray);
-        
+
         setLoading(false);
       });
       return () => data;
@@ -28,49 +36,90 @@ const Mycontext = ({ children }) => {
     }
   };
 
+  // =========================ORDER STATE =======================
 
+  const [getAllOrder, setgetAllOrder] = useState([]);
 
+  // =======================GET ALL ORDER FUNCTION ======================
 
-    // =========================ORDER STATE =======================
+  const getAllOrderFunction = async () => {
+    setLoading(true);
+    try {
+      const q = query(collection(fireDB, "order"), orderBy("date"));
 
-    const [getAllOrder, setgetAllOrder] = useState([]);
-
-    // =======================GET ALL ORDER FUNCTION ======================
-  
-    const getAllOrderFunction = async () => {
-        setLoading(true);
-      try {
-        const q = query(
-          collection(fireDB, "order"),
-          orderBy("date")
-        );
-  
-        const data = onSnapshot(q , (QuerySnapshot)=>{
-           let orderarray = [];
-           QuerySnapshot.forEach((doc)=>{
-             orderarray.push({...doc.data(), id: doc.id });
-           });
-           setgetAllOrder(orderarray);
-           setLoading(false);
-        })
-        return ()=> data;
-  
-  
-      } catch (error) {
-        console.log(error);
+      const data = onSnapshot(q, (QuerySnapshot) => {
+        let orderarray = [];
+        QuerySnapshot.forEach((doc) => {
+          orderarray.push({ ...doc.data(), id: doc.id });
+        });
+        setgetAllOrder(orderarray);
         setLoading(false);
-        
-      }
+      });
+      return () => data;
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
     }
+  };
 
+  //=====================DELETE ORDER FUNCTIONS====================
+
+  const deleteProduct = async (id) => {
+    setLoading(true);
+    try {
+      await deleteDoc(doc(fireDB, "order", id));
+      toast.success("Order Deleted successfully");
+      getAllOrderFunction();
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  // user State
+  const [getAllUser, setGetAllUser] = useState([]);
+
+  /**========================================================================
+   *========================================================================**/
+
+  const getAllUserFunction = async () => {
+    setLoading(true);
+    try {
+      const q = query(collection(fireDB, "user"), orderBy("date"));
+      const data = onSnapshot(q, (QuerySnapshot) => {
+        let userArray = [];
+        QuerySnapshot.forEach((doc) => {
+          userArray.push({ ...doc.data(), id: doc.id });
+        });
+        setGetAllUser(userArray);
+        setLoading(false);
+      });
+      return () => data;
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  const deleteUser = async (id) => {
+    setLoading(true);
+    try {
+      await deleteDoc(doc(fireDB, "user", id));
+      toast.success("User Deleted successfully");
+      getAllUserFunction();
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     getAllProductFunction();
     getAllOrderFunction();
+    getAllUserFunction();
   }, []);
-
-
-
 
   return (
     <UserContext.Provider
@@ -79,7 +128,10 @@ const Mycontext = ({ children }) => {
         setLoading,
         getAllProduct,
         getAllProductFunction,
-        getAllOrder
+        getAllOrder,
+        deleteProduct,
+        getAllUser,
+        deleteUser
       }}
     >
       {children}

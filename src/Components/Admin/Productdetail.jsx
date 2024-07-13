@@ -48,8 +48,8 @@ const Productdetail = () => {
 
       {/* table  */}
       <div className="w-full overflow-x-auto mb-5">
-        <table className="w-full  text-left border border-collapse sm:border-separate border-green-100 text-green-400">
-          <tbody>
+        <table className="w-full  text-left border-[10px] sm:border-separate border-green-100 text-green-400">
+          <tbody >
             <tr>
               <th
                 scope="col"

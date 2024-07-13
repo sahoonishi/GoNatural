@@ -3,23 +3,26 @@ import Productdetail from "../../Admin/Productdetail";
 import OrderDetail from "../../Admin/OrderDetail";
 import UserDetail from "../../Admin/UserDetail";
 import Layout from "../../Layout/Layout";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { UserContext } from "../../../Context/Mycontext";
 import ScrollToTop from './../../../ScrollToTop';
 
 
 
 const AdminDashboard = () => {
+
   const user = JSON.parse(localStorage.getItem('users'));
   const context = useContext(UserContext);
-  const{getAllProduct}=context;
+  const{getAllProduct , getAllOrder , getAllUser}=context;
+
+  
 
   return (
     <Layout>
       {/* Top */}
       <div className="top mb-5 px-5 mt-5">
-        <div className=" bg-green-50 py-5 border border-green-100 rounded-lg">
-          <h1 className=" text-center text-2xl font-DM font-extrabold text-white ">
+        <div className=" bg-green-50 py-5 border border-green-100 rounded-md">
+          <h1 className=" text-center text-2xl font-DM font-extrabold text-black ">
             Admin Dashboard
           </h1>
         </div>
@@ -27,7 +30,7 @@ const AdminDashboard = () => {
 
       <div className="px-5">
         {/* Mid  */}
-        <div className="mid mb-5">
+        <div className="mid mb-5 hover:scale-95 transition-all shadow-xl">
           {/* main  */}
           <div className=" bg-green-50 py-5 rounded-xl border border-green-100">
             {/* image  */}
@@ -58,10 +61,10 @@ const AdminDashboard = () => {
         {/* Bottom */}
         <div className="">
           <Tabs>
-            <TabList className="flex flex-wrap -m-4 text-center justify-center">
+            <TabList  className="flex flex-wrap -m-4 text-center justify-center">
               {/* Total Products */}
-              <Tab className="p-4 md:w-1/3 sm:w-1/2 w-full cursor-pointer">
-                <div className=" border bg-green-50 hover:bg-green-100 border-green-100 px-4 py-3 rounded-xl">
+              <Tab  className="p-4 md:w-1/3 sm:w-1/2 w-full cursor-pointer">
+                <div  className=" border bg-green-50 hover:bg-green-100 border-green-100 px-4 py-3 rounded-xl hover:scale-95 transition-all shadow-xl">
                   <div className="text-green-500 w-12 h-12 mb-3 inline-block">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -92,8 +95,8 @@ const AdminDashboard = () => {
               </Tab>
 
               {/* Total Order  */}
-              <Tab className="p-4 md:w-1/4 sm:w-1/2 w-full cursor-pointer">
-                <div className=" border bg-green-50 hover:bg-green-100 border-green-100 px-4 py-3 rounded-xl">
+              <Tab  className="p-4 md:w-1/4 sm:w-1/2 w-full cursor-pointer ">
+                <div className=" border bg-green-50 hover:bg-green-100 border-green-100 px-4 py-3 rounded-xl hover:scale-95 transition-all shadow-xl">
                   <div className="text-green-500 w-12 h-12 mb-3 inline-block">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -116,15 +119,15 @@ const AdminDashboard = () => {
                     </svg>
                   </div>
                   <h2 className="title-font font-medium text-3xl text-green-400 fonts1">
-                    10
+                    {getAllOrder.length}
                   </h2>
                   <p className=" text-green-500  font-bold">Total Order</p>
                 </div>
               </Tab>
 
               {/* Total User  */}
-              <Tab className="p-4 md:w-1/3 sm:w-1/2 w-full cursor-pointer">
-                <div className=" border bg-green-50 hover:bg-green-100 border-green-100 px-4 py-3 rounded-xl">
+              <Tab  className="p-4 md:w-1/3 sm:w-1/2 w-full cursor-pointer">
+                <div className=" border bg-green-50 hover:bg-green-100 border-green-100 px-4 py-3 rounded-xl hover:scale-95 transition-all shadow-xl">
                   <div className="text-green-500 w-12 h-12 mb-3 inline-block">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +148,7 @@ const AdminDashboard = () => {
                     </svg>
                   </div>
                   <h2 className="title-font font-medium text-3xl text-green-400 fonts1">
-                    10
+                    {getAllUser.length}
                   </h2>
                   <p className=" text-green-500  font-bold">Total Users</p>
                 </div>

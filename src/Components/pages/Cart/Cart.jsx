@@ -114,6 +114,9 @@ const CartPage = () => {
       }),
     };
 
+
+    
+
     try {
       const orderRef = collection(fireDB, "order");
       addDoc(orderRef, orderInfo);

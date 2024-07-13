@@ -1,6 +1,12 @@
+import { useContext } from "react";
+import { UserContext } from "../../Context/Mycontext";
+import { MdDelete } from "react-icons/md";
+
 const UserDetail = () => {
+  const { getAllUser , deleteUser } = useContext(UserContext);
+
   return (
-    <div className="mb-20">
+    <div>
       <div>
         <div className="py-5 flex justify-between items-center">
           {/* text  */}
@@ -9,7 +15,7 @@ const UserDetail = () => {
 
         {/* table  */}
         <div className="w-full overflow-x-auto">
-          <table className="w-full text-left border border-collapse sm:border-separate border-pink-100 text-pink-400">
+          <table className="w-full text-left border border-collapse sm:border-separate border-pink-100 text-pink-400 mb-10">
             <tbody>
               <tr>
                 <th
@@ -18,39 +24,81 @@ const UserDetail = () => {
                 >
                   S.No.
                 </th>
+
                 <th
                   scope="col"
-                  className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100"
+                  className="h-12 px-6 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara"
                 >
-                  Location Name
+                  Name
+                </th>
+
+                <th
+                  scope="col"
+                  className="h-12 px-6 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara"
+                >
+                  Email
+                </th>
+
+                <th
+                  scope="col"
+                  className="h-12 px-6 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara"
+                >
+                  Uid
+                </th>
+
+                <th
+                  scope="col"
+                  className="h-12 px-6 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara"
+                >
+                  Role
+                </th>
+
+                <th
+                  scope="col"
+                  className="h-12 px-6 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara"
+                >
+                  Date
                 </th>
                 <th
                   scope="col"
-                  className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100"
+                  className="h-12 px-6 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara"
                 >
-                  Action
-                </th>
-                <th
-                  scope="col"
-                  className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100"
-                >
-                  Action
+                  Remove User
                 </th>
               </tr>
-              <tr className="text-pink-300">
-                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 ">
-                  1.
-                </td>
-                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                  {"name"}
-                </td>
-                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 text-green-500 cursor-pointer ">
-                  Edit
-                </td>
-                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 text-red-500 cursor-pointer ">
-                  Delete
-                </td>
-              </tr>
+              {getAllUser.map((item, index) => {
+                return (
+                  <tr key={index} className="text-pink-300">
+                    <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 ">
+                      {index+1}
+                    </td>
+
+                    <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
+                      {item.name}
+                    </td>
+
+                    <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 cursor-pointer ">
+                      {item.email}
+                    </td>
+
+                    <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 cursor-pointer ">
+                      {item.uid}
+                    </td>
+
+                    <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 cursor-pointer ">
+                      {item.role}
+                    </td>
+
+                    <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 cursor-pointer ">
+                      {item.date}
+                    </td>
+                    <td className="h-12 transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 cursor-pointer ">
+                    <MdDelete onClick={()=>deleteUser(item.id)} className="bg-red-600 text-white rounded-lg hover:bg-red-400 hover:scale-105 text-2xl mx-auto p-1"/>
+                      
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

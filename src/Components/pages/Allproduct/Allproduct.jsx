@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router";
 import Layout from "../../Layout/Layout";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, } from "react";
 import { UserContext } from "../../../Context/Mycontext";
 import Loader from "../../Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteFromCart } from "../../../redux/cartSlice";
 import toast from "react-hot-toast";
+
 
 // productData
 
@@ -35,9 +36,13 @@ const AllProduct = () => {
   };
 
   // STORE IN LOCALSTORAGE
+  
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
+
+
+
   return (
     <Layout>
       <div className="py-8">
@@ -104,6 +109,8 @@ const AllProduct = () => {
           </div>
         </section>
       </div>
+
+      
     </Layout>
   );
 };
