@@ -14,7 +14,7 @@ import Lottie from "react-lottie";
 import animationData from "../../../../public/image/music/Animation - 1720790306666.json";
 import BuyNow from "../../BuyNow/BuyNow";
 import { fireDB } from "../../../Firebase/FirebaseConfig";
-import { addDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 const CartPage = () => {
   const cartItems = useSelector((store) => store.cart);
@@ -277,7 +277,12 @@ const CartPage = () => {
                   </dl>
                   <div className="px-2 pb-4 font-medium text-green-700">
                     <div className="flex gap-4 mb-6">
-                      {user ? <BuyNow /> : 
+                      {user ? <BuyNow
+                        address={address}
+                        setaddress={setaddress}
+                        buyNow={buyNow}
+                      
+                       /> : 
                       
                       <Navigate to={"/login"} />}
                     </div>
