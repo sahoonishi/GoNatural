@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/Mycontext";
 import Loader from "../Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,10 +18,12 @@ const HomepageProductcard = () => {
 
   const addCart = (item) => {
     // console.log(item)
-    if(user){
-    dispatch(addToCart(item));
-    toast.success("Added to cart");}
-    else{toast.error("please login");}
+    if (user) {
+      dispatch(addToCart(item));
+      toast.success("Added to cart");
+    } else {
+      toast.error("please login");
+    }
   };
 
   const deleteCart = (item) => {
@@ -35,11 +37,13 @@ const HomepageProductcard = () => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+
+
   return (
     <div className="mt-10 font-DM">
       {/* Heading  */}
       <div className="">
-        <h1 className=" text-center mb-5 text-2xl font-DM font-semibold">
+        <h1 className="underline text-center mb-5 text-2xl font-DM font-semibold">
           Bestselling Products
         </h1>
       </div>
@@ -49,7 +53,7 @@ const HomepageProductcard = () => {
         <div className="container px-5 py-5 mx-auto">
           <div className="flex flex-wrap justify-center -m-4">
             {loading && <Loader />}
-            {getAllProduct.slice(0, 4).map((item) => {
+            {getAllProduct.slice(getAllProduct.indexOf(getAllProduct[getAllProduct.length-5]),getAllProduct.indexOf(getAllProduct[getAllProduct.length-1])).map((item) => {
               const { image, title, price, id } = item;
 
               return (
@@ -57,12 +61,12 @@ const HomepageProductcard = () => {
                   key={id}
                   className="p-4 w-96 justify-center md:w-1/3 lg:w-1/4 "
                 >
-                  <div className="h-96 rounded-3xl overflow-hidden cursor-pointer hover:scale-105 transition-all outline-none">
+                  <div className=" border border-green-300 shadow-2xl rounded-3xl overflow-hidden cursor-pointer hover:scale-105 transition-all outline-none">
                     {/* OBJECT-CONTAIN           FOR FIT AN IMAGE */}
 
                     <img
                       onClick={() => navigate(`/productinfo/${id}`)}
-                      className="md:w-28 md:h-24 lg:h-40 lg:w-40 object-contain  h-44 w-1/2  ml-9 mt-3 rounded-2xl"
+                      className="md:w-28 md:h-24 lg:h-32 lg:w-32 object-contain  h-44 w-1/2  ml-9 mt-3 rounded-2xl"
                       src={image}
                       alt="blog"
                     />
@@ -89,7 +93,8 @@ const HomepageProductcard = () => {
                           </button>
                         ) : (
                           <button
-                            onClick={ () => addCart(item)}
+                          
+                            onClick={() => addCart(item)}
                             className=" bg-green-400 hover:bg-green-500 w-full text-white py-[4px] rounded-lg font-bold"
                           >
                             Add to cart

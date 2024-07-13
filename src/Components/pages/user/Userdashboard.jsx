@@ -2,19 +2,7 @@ import { useContext } from "react";
 import Layout from "../../Layout/Layout";
 import { UserContext } from "../../../Context/Mycontext";
 
-const products = [
-  {
-    id: 1,
-    name: "Aroma Magic facewash",
-    imageSrc:
-      "https://rukminim2.flixcart.com/image/612/612/xif0q/face-wash/7/9/0/200-neem-tea-tree-face-wash-acne-control-aroma-magic-original-imaghexzapbye9fd.jpeg?q=70",
-    href: "#",
-    price: "₹200",
-    color: "Green",
-    imageAlt: "facewash",
-    quantity: 1,
-  },
-];
+
 
 const Userdashboard = () => {
   const user = JSON.parse(localStorage.getItem("users"));
@@ -58,7 +46,8 @@ const Userdashboard = () => {
             <h2 className=" text-2xl lg:text-3xl font-bold">Order Details</h2>
 
             {/* main 2 */}
-            {getAllOrder
+            { getAllOrder>0 ? 
+             getAllOrder
               .filter((obj) => obj.userid === user.uid)
               .map((order, index) => {
                 return (
@@ -163,7 +152,12 @@ const Userdashboard = () => {
                     })}
                   </div>
                 );
-              })}
+              })
+              :
+              <div className="flex w-full justify-center">
+                <img className="w-40" src="./image/man.png" alt="image" />
+              </div>
+              }
           </div>
         </div>
       </div>

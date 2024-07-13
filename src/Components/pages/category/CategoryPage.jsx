@@ -11,7 +11,7 @@ const CategoryPage = () => {
   const { categoryname } = useParams();
   const { loading, setLoading, getAllProduct } = useContext(UserContext);
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('users'));
+  const user = JSON.parse(localStorage.getItem("users"));
 
   const cartItems = useSelector((store) => store.cart);
   const dispatch = useDispatch();

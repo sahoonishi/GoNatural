@@ -26,17 +26,17 @@ const SearchBar = () => {
   return (
     <div className="">
       {/* search input  */}
-      <div className="  input flex justify-center border rounded-md w-52 sm:mx-auto mx-auto">
+      <div className="  input flex justify-center border rounded-md w-60 sm:mx-auto mx-auto">
         <input
           type="text"
           value={search}
           placeholder="Search here"
           onChange={(e) => setSearch(e.target.value)}
-          className=" bg-transparent placeholder-white rounded-lg px-12 sm:px-9 py-2 sm:w-52 w-52 outline-none text-white hover:scale-95 transition-all"
+          className=" bg-transparent placeholder-white text-left rounded-lg px-1 sm:px-2 py-2 sm:w-52 w-52 outline-none text-white hover:scale-95 transition-all"
         />
         {search && (
           <span
-            className="text-white -translate-x-9 sm:-translate-x-13 pt-2 cursor-pointer"
+            className="text-white -translate-x-1 sm:-translate-x-1 pt-2 cursor-pointer"
             onClick={cleartext}
           >
             <span className="-mr-2 text-lg  material-symbols-outlined">
@@ -49,10 +49,10 @@ const SearchBar = () => {
       {/* search drop-down  */}
       <div className=" flex justify-center">
         {search && (
-          <div className=" block absolute bg-gray-200 w-52 md:w-70 lg:w-70 z-50 my-1 rounded-lg px-2 py-2">
+          <div className=" block absolute bg-gray-200 w-60 z-50 my-1 rounded-lg px-2 py-2">
             {filterSearchData.length > 0 ? (
               <>
-                {filterSearchData.map((item, index) => {
+                {filterSearchData.slice(0,4).map((item, index) => {
                   return (
                     <div
                       onClick={() => navigate(`/productinfo/${item.id}`)}

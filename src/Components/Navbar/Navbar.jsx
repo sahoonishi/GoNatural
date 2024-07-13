@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+ import React, { useEffect, useState } from "react";
 import Searchbar from "../SearchBar/Searchbar";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
@@ -27,7 +27,7 @@ const Navbar = () => {
   // console.log(Kart_value, ".................................");
 
   const navlist = (
-    <ul className="flex justify-evenly font-DM md:gap-x-16 mb-3 md:mb-1 px-1 text-xs md:text-base text-white gap-x-1 li">
+    <ul className="flex justify-evenly font-DM md:gap-x-16 mb-3 md:mb-1 px-1 text-xs md:text-base text-white  li">
       <li>
         <Link to={"/"}>Home</Link>
       </li>
@@ -37,7 +37,7 @@ const Navbar = () => {
       <li>
         <Link to={"/cart"} className="relative text-lg sm:text-xl">
           <HiMiniShoppingCart />
-          <span className="absolute -top-2 left-4 bg-orange-800 rounded-full text-black text-xs w-5 text-center shadow-lg z-1 border-x-2 border-y-2 font-DM outline-none">
+          <span className="absolute -top-3 left-3 bg-green-400 rounded-full text-black text-xs w-5 text-center shadow-lg z-1 border-x-2 border-y-2 font-DM outline-none">
             {/* {data.length} */}
             {Kart_value && Kart_value.length}
           </span>

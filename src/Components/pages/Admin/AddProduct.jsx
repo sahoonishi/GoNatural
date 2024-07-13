@@ -8,28 +8,38 @@ import Loader from "../../Loader/Loader";
 
 const categoryList = [
   {
-    name: "facesah",
+    name: "Facesah",
   },
   {
-    name: "shirt",
+    name: "Sunscreen",
   },
   {
-    name: "jacket",
+    name: "Cream",
   },
   {
-    name: "mobile",
+    name: "Hairoil",
   },
   {
-    name: "laptop",
+    name: "Shampoo",
   },
   {
-    name: "shoes",
+    name: "Soap",
   },
   {
-    name: "home",
+    name: "Foods",
   },
   {
-    name: "books",
+    name: "Oral care",
+  },
+  {
+    name: "Deodrant",
+  },
+
+  {
+    name: "Wooden products",
+  },
+  {
+    name: "Bodylotion",
   },
 ];
 const AddProduct = () => {
@@ -158,7 +168,7 @@ const AddProduct = () => {
                 const { name } = value;
                 return (
                   <option
-                    className=" first-letter:capitalize bg-transparent"
+                    className=" first-letter:uppercase bg-transparent"
                     key={index}
                     value={name}
                   >
