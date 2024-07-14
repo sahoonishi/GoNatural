@@ -39,7 +39,7 @@ const Hero = () => {
           <div>Time </div>
           <div> to live</div> <div>for yourself</div>
 
-          <div className="flex sm:gap-16 sm:text-3xl text-xl gap-8 font-normal  mt-10 text-gray-300 ">
+          <div className="flex sm:gap-20 sm:text-xl text-xl gap-8 font-normal  mt-10 text-gray-300 ">
             <div className="grid ">
               <span className="">
                 <CountUp end={70} /> <span>+</span>
@@ -48,6 +48,8 @@ const Hero = () => {
                 <span>Awards</span> <span className="">Winning</span>
               </span>
             </div>
+
+    
             <div className="grid">
               <span className="">
                 <CountUp start={190} end={467} duration={4} /> <span>+</span>

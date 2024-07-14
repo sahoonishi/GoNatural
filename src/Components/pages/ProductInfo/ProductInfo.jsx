@@ -8,7 +8,7 @@ import Loader from "../../Loader/Loader";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addToCart, deleteFromCart } from "../../../redux/cartSlice";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 
 const ProductInfo = () => {
   const { loading, setLoading } = useContext(UserContext);
@@ -33,16 +33,14 @@ const ProductInfo = () => {
     }
   };
 
-
-
   const addCart = (item) => {
     // console.log(item)
-    if(user){
+    if (user) {
       dispatch(addToCart(item));
       toast.success("Add to cart");
+    } else {
+      toast.error("please login");
     }
-    else{toast.error("please login");}
-
   };
 
   const deleteCart = (item) => {
@@ -84,8 +82,15 @@ const ProductInfo = () => {
               <div className="w-full px-4 md:w-1/2">
                 <div className="lg:pl-20">
                   <div className="mb-6 ">
-                    <h2 className="max-w-xl mb-6 text-xl font-semibold leading-loose tracking-wide text-green-700 md:text-2xl dark:text-gray-300">
+                    <h2 className=" tracking-widest text-lg title-font font-medium text-black mb-1 flex gap-2">
                       {product.title}
+                      <div className="mt-1">
+                        <img
+                          className="w-9 sm:w-12 md:w-16 lg:w-16"
+                          src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
+                          alt="image"
+                        />
+                      </div>
                     </h2>
                     <div className="flex flex-wrap items-center mb-6">
                       <ul className="flex mb-4 mr-2 lg:mb-0">
@@ -161,11 +166,17 @@ const ProductInfo = () => {
                   <div className="mb-6 " />
                   <div className="flex flex-wrap items-center mb-6">
                     {cartItems.some((p) => p.id === product.id) ? (
-                      <button onClick={()=>deleteCart(product)} className="w-full px-4 py-3 text-center text-white bg-red-400 border border-red-400  hover:bg-red-600 hover:text-gray-100 rounded-xl">
+                      <button
+                        onClick={() => deleteCart(product)}
+                        className="w-full px-4 py-3 text-center text-white bg-red-400 border border-red-400  hover:bg-red-600 hover:text-gray-100 rounded-xl"
+                      >
                         Delete from cart
                       </button>
                     ) : (
-                      <button onClick={()=>addCart(product)} className="w-full px-4 py-3 text-center text-white bg-green-400 border border-green-400  hover:bg-green-600 hover:text-gray-100 rounded-xl">
+                      <button
+                        onClick={() => addCart(product)}
+                        className="w-full px-4 py-3 text-center text-white bg-green-400 border border-green-400  hover:bg-green-600 hover:text-gray-100 rounded-xl"
+                      >
                         Add to cart
                       </button>
                     )}

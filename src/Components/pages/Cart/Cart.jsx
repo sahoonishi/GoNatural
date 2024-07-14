@@ -304,7 +304,7 @@ const CartPage = () => {
             </div>
           </div>
 
-          <div className="mx-auto -mt-32">
+          {/* <div className="mx-auto mt-6">
             <button
               onClick={() => navigate("/allproduct")}
               type="button"
@@ -312,7 +312,7 @@ const CartPage = () => {
             >
               Buy Now
             </button>
-          </div>
+          </div> */}
         </div>
       )}
     </Layout>

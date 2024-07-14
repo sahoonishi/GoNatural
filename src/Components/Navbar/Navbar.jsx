@@ -1,10 +1,10 @@
- import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Searchbar from "../SearchBar/Searchbar";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteAll} from "../../redux/cartSlice";
+import { deleteAll } from "../../redux/cartSlice";
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("users"));
@@ -34,15 +34,7 @@ const Navbar = () => {
       <li>
         <Link to={"/allproduct"}>Products</Link>
       </li>
-      <li>
-        <Link to={"/cart"} className="relative text-lg sm:text-xl">
-          <HiMiniShoppingCart />
-          <span className="absolute -top-3 left-3 bg-green-400 rounded-full text-black text-xs w-5 text-center shadow-lg z-1 border-x-2 border-y-2 font-DM outline-none">
-            {/* {data.length} */}
-            {Kart_value && Kart_value.length}
-          </span>
-        </Link>
-      </li>
+
       {!user ? (
         <li>
           <Link to={"/signup"}>Signup</Link>
@@ -80,6 +72,15 @@ const Navbar = () => {
           Logout
         </li>
       )}
+      <li className="mt-1">
+        <Link to={"/cart"} className="relative text-lg sm:text-xl ">
+          <HiMiniShoppingCart />
+          <span className="absolute -top-3 left-3 bg-green-400 rounded-full text-black text-xs w-5 text-center shadow-lg z-1 border-x-2 border-y-2 font-DM outline-none">
+            {/* {data.length} */}
+            {Kart_value && Kart_value.length}
+          </span>
+        </Link>
+      </li>
     </ul>
   );
 

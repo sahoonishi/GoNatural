@@ -127,7 +127,7 @@ const Signup = () => {
         <>
           {/* <div className=""><img className=" w-full sm:w-96 hidden sm:block " src="public/image/svg-image-32.svg" alt=""  /></div> */}
 
-          <div className="login_Form bg-green-50 w-72 lg:w-fit px-1 lg:px-8 py-6  rounded-tl-2xl rounded-br-full shadow-md font-DM">
+          <div className="login_Form bg-green-50 w-72 lg:w-fit px-1 lg:px-8 py-6 rounded-3xl overflow-hidden shadow-2xl font-DM border border-black">
             {/* Top Heading  */}
             <div className="mb-5">
               <h2 className="text-center text-2xl font-bold text-green-500 ">
@@ -144,7 +144,7 @@ const Signup = () => {
                 onChange={(event) => {
                   setUserSignup({ ...userSignup, name: event.target.value });
                 }}
-                className="bg-gray-100 border w-60  border-green-200 px-2 py-2 lg:w-96 rounded-md outline-none placeholder-green-200"
+                className="bg-gray-100 border w-60  border-green-200 px-2 py-2 lg:w-96 rounded-md shadow-2xl outline-none placeholder-gray-600"
               />
             </div>
 
@@ -157,7 +157,7 @@ const Signup = () => {
                 onChange={(event) => {
                   setUserSignup({ ...userSignup, email: event.target.value });
                 }}
-                className="bg-gray-100 border w-60 border-green-200 px-2 py-2 lg:w-96 rounded-md outline-none placeholder-green-200"
+                className="bg-gray-100 border w-60 border-green-200 px-2 py-2 lg:w-96 rounded-md outline-none placeholder-gray-600"
               />
             </div>
 
@@ -174,7 +174,7 @@ const Signup = () => {
                     password: event.target.value,
                   });
                 }}
-                className="bg-gray-100 border w-60 border-green-200 px-2 py-2 lg:w-96 rounded-md outline-none placeholder-green-200"
+                className="bg-gray-100 border w-60 border-green-200 px-2 py-2 lg:w-96 rounded-md outline-none placeholder-gray-600"
               />
             </div>
 
@@ -189,14 +189,7 @@ const Signup = () => {
               </button>
             </div>
 
-            <div className="mb-5 m-5">
-              <button
-                type="button"
-                className="bg-white w-60 p-2 hover:bg-green-400 lg:w-full text-black text-center font-bold rounded-md "
-              >
-                Sign in with Google
-              </button>
-            </div>
+
 
             <div>
               <h2 className="text-black m-5">

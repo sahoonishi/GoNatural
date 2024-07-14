@@ -24,10 +24,7 @@ const Value = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="underline text-center mb-5 text-2xl font-DM font-semibold">Our Values</h2>
-          <p className="mt-2 text-black font-DM font-semibold">
-            We are committed to providing the best services for you. A good
-            place to live can make your life better.
-          </p>
+
         </div>
 
         <Accordion

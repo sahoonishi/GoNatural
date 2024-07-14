@@ -48,7 +48,7 @@ const AllProduct = () => {
       <div className="py-8">
         {/* Heading  */}
         <div className="">
-          <h1 className=" text-center mb-5 text-2xl font-DM font-bold">
+          <h1 className=" text-center mb-5 text-2xl font-DM font-bold underline">
             All Products
           </h1>
         </div>
@@ -59,15 +59,15 @@ const AllProduct = () => {
             <div className="flex justify-center top-8">
               {loading && <Loader />}
             </div>
-            <div className="flex flex-wrap -m-4">
+            <div className="flex flex-wrap -m-4 justify-center sm:justify-start ">
               {getAllProduct.map((item, index) => {
                 const { image, title, price, id } = item;
                 return (
-                  <div key={index} className="p-4 w-1/2 md:w-1/3 lg:w-1/4">
-                    <div className="h-96 border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer hover:scale-110 transition-all">
+                  <div key={index} className="p-4  w-72 sm:w-1/2 md:w-1/3 lg:w-1/4">
+                    <div className=" shadow-2xl rounded-3xl overflow-hidden cursor-pointer hover:scale-105 transition-all outline-none w-full ">
                       <img
                         onClick={() => navigate(`/productinfo/${id}`)}
-                        className="lg:h-52  h-40 w-52 p-5 object-contain"
+                        className="lg:h-52  h-40 w-full p-5 object-contain mx-auto"
                         src={image}
                         alt="blog"
                       />
@@ -86,7 +86,7 @@ const AllProduct = () => {
                           {title.substring(0, 15)}
                         </h1>
                         <h1 className="title-font text-lg font-medium text-gray-900 mb-1">
-                          ₹{price}
+                          Rs.{price}
                         </h1>
 
                         <div className="flex justify-center ">

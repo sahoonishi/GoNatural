@@ -9,6 +9,7 @@ import { auth, fireDB } from "../../../Firebase/FirebaseConfig";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { UserContext } from "../../../Context/Mycontext";
 import Loader from "../../Loader/Loader";
+import { IoArrowBackCircleOutline } from "react-icons/io5";
 
 const Login = () => {
   const context = useContext(UserContext);
@@ -78,16 +79,16 @@ const Login = () => {
     <div className="flex justify-center items-center h-screen">
       {loading && <Loader />}
       {/* Login Form  */}
-      <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
+      <div className="login_Form bg-green-50 border border-black rounded-xl shadow-md w-72 lg:w-fit px-1 lg:px-8 py-6">
         {/* Top Heading  */}
         <div className="mb-5">
-          <h2 className="text-center text-2xl font-bold text-pink-500 ">
+          <h2 className="text-center text-2xl font-bold text-green-500 ">
             Login
           </h2>
         </div>
 
         {/* Input One  */}
-        <div className="mb-3">
+        <div className="mb-3 flex justify-center">
           <input
             type="email"
             name="email"
@@ -99,12 +100,12 @@ const Login = () => {
                 email: e.target.value,
               });
             }}
-            className="bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200"
+            className="bg-gray-50 border   w-60  border-green-200 px-2 py-2 lg:w-96 rounded-md outline-none placeholder-gray-600"
           />
         </div>
 
         {/* Input Two  */}
-        <div className="mb-5">
+        <div className="mb-5 m-5  flex justify-center">
           <input
             type="password"
             placeholder="Password"
@@ -115,29 +116,36 @@ const Login = () => {
                 password: e.target.value,
               });
             }}
-            className="bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200"
+            className="bg-gray-50 border   w-60  border-green-200 px-2 py-2 lg:w-96 rounded-md outline-none placeholder-gray-600"
           />
         </div>
 
         {/* Signup Button  */}
-        <div className="mb-5">
+        <div className="mb-5 flex justify-center m-5">
           <button
             type="button"
             onClick={userLoginFunction}
-            className="bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md "
+            className="bg-green-500 hover:bg-green-600  w-60  border-green-200 px-2 lg:w-96 text-white text-center py-2 font-bold rounded-md "
           >
             Login
           </button>
         </div>
 
         <div>
-          <h2 className="text-black">
-            Don't Have an account{" "}
-            <Link className=" text-pink-500 font-bold" to={"/signup"}>
-              Signup
+          <h2 className="text-black m-5">
+            Don't Have an account ? { }
+            <Link className=" text-green-500 font-bold" to={"/signup"}>
+               Signup
             </Link>
           </h2>
         </div>
+        <div className="ml-4 -mt-2">
+              <Link className=" text-3xl " to={"/signup"}>
+              <IoArrowBackCircleOutline className="hover:scale-125 transition-all"/>
+              
+              </Link>
+            </div>
+        
       </div>
     </div>
   );

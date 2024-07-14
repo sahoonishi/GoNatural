@@ -2,12 +2,9 @@ import { useContext } from "react";
 import Layout from "../../Layout/Layout";
 import { UserContext } from "../../../Context/Mycontext";
 
-
-
 const Userdashboard = () => {
   const user = JSON.parse(localStorage.getItem("users"));
   const { getAllOrder, loading } = useContext(UserContext);
-  
 
   return (
     <Layout>
@@ -43,75 +40,81 @@ const Userdashboard = () => {
           {/* main 1 */}
           <div className="mx-auto my-4 max-w-6xl px-2 md:my-6 md:px-0">
             {/* text  */}
-            <h2 className=" text-2xl lg:text-3xl font-bold">Order Details</h2>
+            <h2 className="text-center text-2xl lg:text-3xl font-bold font-DM underline">
+              Order Details
+            </h2>
 
             {/* main 2 */}
-            { getAllOrder>0 ? 
-             getAllOrder
-              .filter((obj) => obj.userid === user.uid)
-              .map((order, index) => {
-                return (
-                  <div key={index}>
-                    {order.cartItems.map((item, index) => {
-                        const {id , category , image , quantity , price , title , date} = item;
-                        
-                      return (
-                        <div
-                          key={index}
-                          className="mt-5 flex flex-col overflow-hidden rounded-xl border border-pink-100 md:flex-row"
-                        >
-                          {/* main 3  */}
-                          <div className="w-full border-r border-green-100 bg-green-50 md:max-w-xs">
-                            {/* left  */}
-                            <div className="p-8">
-                              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-1 font-DM">
-                                <div className="mb-4">
-                                  <div className="text-sm font-semibold text-black">
-                                    Order Id
-                                  </div>
-                                  <div className="text-sm font-medium text-gray-900">
-                                    {id}
-                                  </div>
-                                </div>
+            {getAllOrder.length > 0 ? (
+              getAllOrder
+                .filter((obj) => obj.userid === user.uid)
+                .map((order, index) => {
+                  return (
+                    <div key={index}>
+                      {order.cartItems.map((item, index) => {
+                        const {
+                          id,
+                          category,
+                          image,
+                          quantity,
+                          price,
+                          title,
+                          date,
+                        } = item;
 
-                                <div className="mb-4">
-                                  <div className="text-sm font-semibold">
-                                    Date
+                        return (
+                          <div
+                            key={index}
+                            className="mt-5 flex flex-col overflow-hidden rounded-xl border border-pink-100 md:flex-row"
+                          >
+                            {/* main 3  */}
+                            <div className="w-full border-r border-green-100 bg-green-50 md:max-w-xs">
+                              {/* left  */}
+                              <div className="p-8">
+                                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-1 font-DM gap-5">
+                                  <div className="mb-4">
+                                    <div className="text-sm font-semibold text-black">
+                                      Order Id
+                                    </div>
+                                    <div className="text-sm font-medium text-gray-900">
+                                      {id.slice(0, 9)}
+                                    </div>
                                   </div>
-                                  <div className="text-sm font-medium text-gray-900">
-                                    {order.date}
-                                  </div>
-                                </div>
 
-                                <div className="mb-4">
-                                  <div className="text-sm font-semibold">
-                                    Total Amount
+                                  <div className="mb-4">
+                                    <div className="text-sm font-semibold">
+                                      Date
+                                    </div>
+                                    <div className="text-sm font-medium text-gray-900">
+                                      {order.date}
+                                    </div>
                                   </div>
-                                  <div className="text-sm font-medium text-gray-900">
-                                    Rs.{price * quantity + 99}
-                                  </div>
-                                </div>
 
-                                <div className="mb-4">
-                                  <div className="text-sm font-semibold">
-                                    Order Status
+                                  <div className="mb-4">
+                                    <div className="text-sm font-semibold">
+                                      Total Amount
+                                    </div>
+                                    <div className="text-sm font-medium text-gray-900">
+                                      Rs.{price * quantity + 99}
+                                    </div>
                                   </div>
-                                  <div className="text-sm font-medium text-green-800 first-letter:uppercase">
-                                    {order.status}
+
+                                  <div className="mb-4">
+                                    <div className="text-sm font-semibold">
+                                      Order Status
+                                    </div>
+                                    <div className="text-sm font-medium text-green-800 first-letter:uppercase">
+                                      {order.status}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          {/* right  */}
-                          <div className="flex-1">
-                            <div className="p-8">
-                              <ul className="-my-7 divide-y divide-gray-200">
-                                
-                                  <li
-                                    
-                                    className="flex flex-col justify-between space-x-5 py-7 md:flex-row"
-                                  >
+                            {/* right  */}
+                            <div className="flex-1">
+                              <div className="p-8">
+                                <ul className="-my-7 divide-y divide-gray-200">
+                                  <li className="flex flex-col justify-between space-x-5 py-7 md:flex-row">
                                     <div className="flex flex-1 items-stretch">
                                       <div className="flex-shrink-0">
                                         <img
@@ -143,21 +146,20 @@ const Userdashboard = () => {
                                       </p>
                                     </div>
                                   </li>
-                                
-                              </ul>
+                                </ul>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })
-              :
-              <div className="flex w-full justify-center">
+                        );
+                      })}
+                    </div>
+                  );
+                })
+            ) : (
+              <div className="flex w-full justify-center mt-10">
                 <img className="w-40" src="./image/man.png" alt="image" />
               </div>
-              }
+            )}
           </div>
         </div>
       </div>

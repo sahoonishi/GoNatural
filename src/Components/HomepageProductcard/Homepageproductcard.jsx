@@ -37,14 +37,12 @@ const HomepageProductcard = () => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-
-
   return (
     <div className="mt-10 font-DM">
       {/* Heading  */}
       <div className="">
         <h1 className="underline text-center mb-5 text-2xl font-DM font-semibold">
-          Shop by Best products
+          Shop by trending products
         </h1>
       </div>
 
@@ -53,34 +51,41 @@ const HomepageProductcard = () => {
         <div className="container px-5 py-5 mx-auto">
           <div className="flex flex-wrap justify-center -m-4">
             {loading && <Loader />}
-            {getAllProduct.slice(1,5).map((item) => {
+            {getAllProduct.slice(1, 5).map((item) => {
               const { image, title, price, id } = item;
 
               return (
                 <div
                   key={id}
-                  className="p-4 w-96 justify-center md:w-1/3 lg:w-1/4 "
+                  className="p-4 w-72 justify-center md:w-1/3 lg:w-1/4 font-DM "
                 >
-                  <div className=" border border-green-300 shadow-2xl rounded-3xl overflow-hidden cursor-pointer hover:scale-105 transition-all outline-none">
-                    {/* OBJECT-CONTAIN           FOR FIT AN IMAGE */}
+                  <div className=" shadow-2xl rounded-3xl overflow-hidden cursor-pointer hover:scale-105 transition-all outline-none ">
+                    {/* OBJECT-CONTAIN FOR FIT AN IMAGE */}
 
                     <img
                       onClick={() => navigate(`/productinfo/${id}`)}
-                      className="md:w-28 md:h-24 lg:h-32 lg:w-32 object-contain  h-44 w-1/2  ml-9 mt-3 rounded-2xl"
+                      className="md:w-28 md:h-24 lg:h-32 lg:w-32 object-contain  h-32  w-32  mx-auto mt-4 rounded-2xl"
                       src={image}
                       alt="blog"
                     />
                     <div className="p-6">
-                      <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                        GoNatural
+                      <h2 className=" tracking-widest text-xs title-font font-medium text-gray-400 mb-1 flex gap-2">
+                        GoNatural{" "}
+                        <div className="">
+                          <img
+                            className="w-9 sm:w-12 md:w-16 lg:w-16"
+                            src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
+                            alt="image"
+                          />
+                        </div>
                       </h2>
 
-                      <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
+                      <h1 className="title-font text-lg font-medium text-gray-900 mb-1">
                         {title.substring(0, 15)}
                       </h1>
 
-                      <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
-                        ₹{price}
+                      <h1 className="title-font text-lg font-medium font-DM text-gray-900 mb-1">
+                        Rs.{price}
                       </h1>
 
                       <div className="flex justify-center ">
@@ -93,9 +98,8 @@ const HomepageProductcard = () => {
                           </button>
                         ) : (
                           <button
-                          
                             onClick={() => addCart(item)}
-                            className=" bg-green-400 hover:bg-green-500 w-full text-white py-[4px] rounded-lg font-bold"
+                            className="font-DM bg-green-500 hover:bg-green-600 w-full text-white py-[4px] rounded-3xl font-bold"
                           >
                             Add to cart
                           </button>

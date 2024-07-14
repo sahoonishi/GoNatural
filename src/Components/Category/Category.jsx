@@ -65,6 +65,12 @@ const Category = () => {
 
   return (
     <div >
+    <div className="w-full flex justify-center mt-16">
+      <h1 className="underline text-center mb-5 text-2xl font-DM font-semibold">
+        Shop by category
+      </h1>
+    </div>
+     {/* navigation  */}
       <div className="flex flex-row mt-5 ">
         {/* main 1 */}
         <div className="flex overflow-x-scroll lg:justify-left hide-scroll-bar">

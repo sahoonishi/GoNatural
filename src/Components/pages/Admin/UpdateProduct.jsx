@@ -7,28 +7,37 @@ import toast from "react-hot-toast";
 
 const categoryList = [
   {
-    name: "fashion",
+    name: "facewash",
   },
   {
-    name: "shirt",
+    name: "Cream",
   },
   {
-    name: "jacket",
+    name: "Sunscreen",
   },
   {
-    name: "mobile",
+    name: "Wooden products",
   },
   {
-    name: "laptop",
+    name: "Hair oil",
   },
   {
-    name: "shoes",
+    name: "Shampoo",
   },
   {
-    name: "home",
+    name: "BodyLotion",
   },
   {
-    name: "books",
+    name: "Oral care",
+  },
+  {
+    name: "Foods",
+  },
+  {
+    name: "Deodrant",
+  },
+  {
+    name: "Soap",
   },
 ];
 
@@ -61,7 +70,7 @@ const UpdateProduct = () => {
     try {
       const productTemp = await getDoc(doc(fireDB, "products", id));
       const singleproduct = productTemp.data();
-      console.log(singleproduct);
+      //console.log(singleproduct);
       setProduct({
         title: singleproduct.title,
         price: singleproduct.price,
@@ -101,10 +110,10 @@ const UpdateProduct = () => {
     <div>
       <div className="flex justify-center items-center h-screen">
         {/* Login Form  */}
-        <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
+        <div className="login_Form bg-green-50 px-8 py-6 border border-green-100 rounded-xl shadow-md">
           {/* Top Heading  */}
           <div className="mb-5">
-            <h2 className="text-center text-2xl font-bold text-pink-500 ">
+            <h2 className="text-center text-2xl font-bold text-gray-500 ">
               Update Product
             </h2>
           </div>
@@ -119,7 +128,7 @@ const UpdateProduct = () => {
               }}
               name="title"
               placeholder="Product Title"
-              className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+              className="bg-gray-50 border text-green-300 border-green-200 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-600"
             />
           </div>
 
@@ -133,7 +142,7 @@ const UpdateProduct = () => {
                 setProduct({ ...product, price: e.target.value });
               }}
               placeholder="Product Price"
-              className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+              className="bg-gray-50 border text-green-300 border-green-200 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-600"
             />
           </div>
 
@@ -147,7 +156,7 @@ const UpdateProduct = () => {
               }}
               name="image"
               placeholder="Image Url"
-              className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+              className="bg-gray-50 border text-green-300 border-green-200 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-600"
             />
           </div>
 
@@ -158,7 +167,7 @@ const UpdateProduct = () => {
               onChange={(e) => {
                 setProduct({ ...product, category: e.target.value });
               }}
-              className="w-full px-1 py-2 text-pink-300 bg-pink-50 border border-pink-200 rounded-md outline-none  "
+              className="w-full px-1 py-2 text-green-300 bg-gray-50 border border-green-200 rounded-md outline-none  "
             >
               <option disabled>Select Product Category</option>
               {categoryList.map((value, index) => {
@@ -186,7 +195,7 @@ const UpdateProduct = () => {
               }}
               placeholder="Product Description"
               rows="5"
-              className=" w-full px-2 py-1 text-pink-300 bg-pink-50 border border-pink-200 rounded-md outline-none placeholder-pink-300 "
+              className=" w-full px-2 py-1 text-green-300 bg-gray-50 border border-green-200 rounded-md outline-none placeholder-gray-600 "
             ></textarea>
           </div>
 
@@ -195,7 +204,7 @@ const UpdateProduct = () => {
             <button
               type="button"
               onClick={updateProduct}
-              className="bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md "
+              className="bg-green-500 hover:bg-green-600 w-full text-white text-center py-2 font-bold rounded-md "
             >
               Update Product
             </button>

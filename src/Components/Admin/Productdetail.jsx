@@ -35,7 +35,7 @@ const Productdetail = () => {
         <h1 className=" text-xl text-green font-bold ">All Product</h1>
         {/* Add Product Button  */}
         <Link to={"/addproduct"}>
-          <button className="px-5 py-2 bg-green-800 hover:scale-105 hover:bg-green-500 transition-all border border-green-100 text-white rounded-full">
+          <button className="px-5 py-2 bg-green-800 hover:scale-105 hover:bg-green-500 transition-all border border-green-100 text-white rounded-full font-bold">
             Add Product
           </button>
         </Link>
@@ -48,7 +48,7 @@ const Productdetail = () => {
 
       {/* table  */}
       <div className="w-full overflow-x-auto mb-5">
-        <table className="w-full  text-left border-[10px] sm:border-separate border-green-100 text-green-400">
+        <table className="w-full  text-left border-[5px] outline-none sm:border-separate  rounded-3xl text-green-400">
           <tbody >
             <tr>
               <th
