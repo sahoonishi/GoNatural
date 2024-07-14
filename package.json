@@ -18,6 +18,7 @@
     "lottie-web": "^5.12.2",
     "lucide-react": "^0.400.0",
     "react": "^18.3.1",
+    "react-accessible-accordion": "^5.0.0",
     "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
@@ -27,7 +28,8 @@
     "react-router-dom": "^6.24.0",
     "react-tabs": "^6.0.2",
     "react-toggle-dark-mode": "^1.1.1",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "swiper": "^11.1.4"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

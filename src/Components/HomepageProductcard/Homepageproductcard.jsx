@@ -44,7 +44,7 @@ const HomepageProductcard = () => {
       {/* Heading  */}
       <div className="">
         <h1 className="underline text-center mb-5 text-2xl font-DM font-semibold">
-          Bestselling Products
+          Shop by Best products
         </h1>
       </div>
 
@@ -53,7 +53,7 @@ const HomepageProductcard = () => {
         <div className="container px-5 py-5 mx-auto">
           <div className="flex flex-wrap justify-center -m-4">
             {loading && <Loader />}
-            {getAllProduct.slice(getAllProduct.indexOf(getAllProduct[getAllProduct.length-5]),getAllProduct.indexOf(getAllProduct[getAllProduct.length-1])).map((item) => {
+            {getAllProduct.slice(1,5).map((item) => {
               const { image, title, price, id } = item;
 
               return (
