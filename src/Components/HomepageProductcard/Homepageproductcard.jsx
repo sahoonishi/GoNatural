@@ -92,14 +92,14 @@ const HomepageProductcard = () => {
                         {cartItems.some((p) => p.id === item.id) ? (
                           <button
                             onClick={() => deleteCart(item)}
-                            className=" bg-red-700 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold"
+                            className=" bg-gradient-to-r from-red-900 to-red-300 w-full text-white py-[4px] rounded-3xl font-bold"
                           >
                             Delete from cart
                           </button>
                         ) : (
                           <button
                             onClick={() => addCart(item)}
-                            className="font-DM bg-green-500 hover:bg-green-600 w-full text-white py-[4px] rounded-3xl font-bold"
+                            className="font-DM bg-gradient-to-r from-green-900 to-green-300 hover:text-gray-300 w-full text-white py-[4px] rounded-3xl font-bold"
                           >
                             Add to cart
                           </button>

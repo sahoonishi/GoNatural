@@ -101,10 +101,10 @@ const AddProduct = () => {
         {/* Login Form  */}
         {loading && <Loader/>}
 
-        <div className="login_Form bg-green-50 px-8 py-6 border  border-pink-100 rounded-2xl shadow-md">
+        <div className=" px-8 py-6 w-72 sm:w-96 rounded-2xl shadow-2xl">
           {/* Top Heading  */}
 
-          <div className="mb-5">
+          <div className="mb-5 mx-auto">
             <h2 className="text-center text-2xl font-bold text-green-500 ">
               Add Product
             </h2>
@@ -112,7 +112,7 @@ const AddProduct = () => {
 
           {/* Input One  */}
 
-          <div className="mb-3">
+          <div className="mb-3 flex justify-center">
             <input
               type="text"
               name="title"
@@ -121,13 +121,13 @@ const AddProduct = () => {
                 setProduct({ ...product, title: e.target.value });
               }}
               placeholder="Product Title"
-              className="bg-green-50 text-pink-300 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-green-300"
+              className="bg-green-50 text-pink-300 border border-pink-200 px-2 py-2 w-60 sm:w-72 rounded-md outline-none placeholder-green-300  "
             />
           </div>
 
           {/* Input Two  */}
 
-          <div className="mb-3">
+          <div className="mb-3 flex justify-center">
             <input
               type="number"
               value={product.price}
@@ -135,13 +135,13 @@ const AddProduct = () => {
                 setProduct({ ...product, price: e.target.value });
               }}
               placeholder="Product Price"
-              className="bg-green-50 text-pink-300 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-green-300"
+              className="bg-green-50 text-pink-300 border border-pink-200 px-2 py-2 w-60 sm:w-72 rounded-md outline-none placeholder-green-300"
             />
           </div>
 
           {/* Input Three  */}
 
-          <div className="mb-3">
+          <div className="mb-3 flex justify-center">
             <input
               type="text"
               value={product.image}
@@ -149,19 +149,19 @@ const AddProduct = () => {
                 setProduct({ ...product, image: e.target.value });
               }}
               placeholder="Product Image Url"
-              className="bg-green-50 text-pink-300 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-green-300"
+              className="bg-green-50 text-pink-300 border border-pink-200 px-2 py-2 sm:w-72 w-60 rounded-md outline-none placeholder-green-300"
             />
           </div>
 
           {/* Input Four  */}
 
-          <div className="mb-3">
+          <div className="mb-3 flex justify-center">
             <select
               value={product.category}
               onChange={(e) => {
                 setProduct({ ...product, category: e.target.value });
               }}
-              className="w-full px-1 py-2 text-pink-300 bg-green-50 border border-pink-200 rounded-md outline-none  "
+              className="w-60 px-1 py-2 text-pink-300 sm:w-72 bg-green-50 border border-pink-200 rounded-md outline-none  "
             >
               <option disabled>Select Category</option>
               {categoryList.map((value, index) => {
@@ -181,7 +181,7 @@ const AddProduct = () => {
 
           {/* Input Five  */}
 
-          <div className="mb-3">
+          <div className="mb-3 flex justify-center">
             <textarea
               name="description"
               value={product.description}
@@ -191,7 +191,7 @@ const AddProduct = () => {
               placeholder="Product Description"
               rows="5"
               cols="5"
-              className=" w-full px-2 py-1 text-pink-300 bg-green-50 border border-pink-200 rounded-md outline-none placeholder-green-300 "
+              className=" w-60 px-2 py-1 text-pink-300 sm:w-72 bg-green-50 border border-pink-200 rounded-md outline-none placeholder-green-300 "
             ></textarea>
           </div>
 
@@ -201,7 +201,7 @@ const AddProduct = () => {
             <button
               type="button"
               onClick={addproductfunction}
-              className="bg-green-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md "
+              className="bg-gradient-to-r from-green-900 to-green-400 w-full text-white text-center py-2 font-bold rounded-md "
             >
               Add Product
             </button>

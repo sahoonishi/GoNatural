@@ -11,113 +11,73 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
 const Signup = () => {
-  const { loading, setLoading } = useContext(UserContext);
+  const context = useContext(UserContext);
+  const {loading, setLoading } = context;
+
+  // navigate 
   const navigate = useNavigate();
 
-  // // User Google Sign in
-
-  // const handleGoogle = async () => {
-  //   const provider = new GoogleAuthProvider();
-  //   setLoading(true);
-  //   try {
-  //     const users = await signInWithPopup(auth, provider);
-  //     const user = {
-  //       name: userSignup.name,
-  //       email: users.user.email,
-  //       uid: users.user.uid,
-  //       role: userSignup.role,
-  //       time: Timestamp.now(),
-  //       date: new Date().toLocaleString("en-US", {
-  //         month: "short",
-  //         day: "2-digit",
-  //         year: "numeric",
-  //         hour: "numeric",
-  //         minute: "numeric",
-  //         second: "numeric",
-  //       }),
-  //     };
-
-  //     const userReference = collection(fireDB, "user"); // HERE "user" IS COLLECTION NAME
-  //     addDoc(userReference, user);
-
-  //     setUserSignup({
-  //       name: "",
-  //       email: "",
-  //       password: "",
-  //     });
-  //     setLoading(false);
-  //     toast.success("User signed in successfully");
-  //     navigate("/");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // user signup state
-
+  // User Signup State 
   const [userSignup, setUserSignup] = useState({
-    name: "",
-    email: "",
-    password: "",
-    // cartItems:"",
-    role: "user",
+      name: "",
+      email: "",
+      password: "",
+      role: "user"
   });
 
-  //   *****************************  USER SIGNUP FUNCTION    ********************************
+  /**========================================================================
+  *========================================================================**/
 
   const userSignupfunc = async () => {
-    if (
-      userSignup.name === "" ||
-      userSignup.email === "" ||
-      userSignup.password === ""
-    ) {
-      return toast.error(" Kindly Fill all details");
-    }
-    setLoading(true);
-    try {
-      const users = await createUserWithEmailAndPassword(
-        auth,
-        userSignup.email,
-        userSignup.password
-      );
+      // validation 
+      if (userSignup.name === "" || userSignup.email === "" || userSignup.password === "") {
+          toast.error("All Fields are required")
+      }
 
-      // const cartItems = useSelector((state)=>state.cart);
-      // console.log(cartItems);
-      const user = {
-        name: userSignup.name,
-        email: users.user.email,
-        // cartItems: cartItems,
-        uid: users.user.uid,
-        role: userSignup.role,
-        // time: Timestamp.now(),
-        date: new Date().toLocaleString("en-US", {
-          month: "short",
-          day: "2-digit",
-          year: "numeric",
-          hour: "numeric",
-          minute: "numeric",
-          second: "numeric",
-        }),
-      };
+      setLoading(true);
+      try {
+          const users = await createUserWithEmailAndPassword(auth, userSignup.email, userSignup.password);
 
-      const userReference = collection(fireDB, "user"); // HERE "user" IS COLLECTION NAME
-      addDoc(userReference, user);
+          // create user object
+          const user = {
+              name: userSignup.name,
+              email: users.user.email,
+              uid: users.user.uid,
+              role: userSignup.role,
+              //time: Timestamp.now(),
+              date: new Date().toLocaleString(
+                  "en-US",
+                  {
+                      month: "short",
+                      day: "2-digit",
+                      year: "numeric",
+                  }
+              )
+          }
 
-      setUserSignup({
-        name: "",
-        email: "",
-        password: "",
-      });
+          // create user Refrence
+          const userRefrence = collection(fireDB, "user")
 
-      toast.success("Signup Successfully");
+          // Add User Detail
+          addDoc(userRefrence, user);
 
-      setLoading(false);
-      navigate("/login");
-    } catch (error) {
-      setLoading(false);
-      toast.error(error.message);
-    }
-  };
+          setUserSignup({
+              name: "",
+              email: "",
+              password: ""
+          })
+
+          toast.success("Signup Successfully");
+
+          setLoading(false);
+          navigate('/login')
+      } catch (error) {
+          console.log(error);
+          setLoading(false);
+      }
+
+  }
+
   return (
     <div className="flex justify-center items-center h-screen ">
       {/* Login Form  */}
@@ -127,7 +87,7 @@ const Signup = () => {
         <>
           {/* <div className=""><img className=" w-full sm:w-96 hidden sm:block " src="public/image/svg-image-32.svg" alt=""  /></div> */}
 
-          <div className="login_Form bg-green-50 w-72 lg:w-fit px-1 lg:px-8 py-6 rounded-3xl overflow-hidden shadow-2xl font-DM border border-black">
+          <div className="login_Form w-72 lg:w-fit px-1 lg:px-8 py-6 rounded-3xl overflow-hidden shadow-2xl font-DM">
             {/* Top Heading  */}
             <div className="mb-5">
               <h2 className="text-center text-2xl font-bold text-green-500 ">
@@ -183,7 +143,7 @@ const Signup = () => {
               <button
                 type="button"
                 onClick={userSignupfunc}
-                className="bg-green-500 w-60 p-2 hover:bg-green-400 lg:w-full text-white text-center font-bold rounded-md "
+                className="bg-gradient-to-r from-green-900 to-green-300  w-60 p-2 hover:bg-green-400 lg:w-full text-white text-center font-bold rounded-md "
               >
                 Signup
               </button>

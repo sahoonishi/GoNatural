@@ -91,11 +91,11 @@ const AllProduct = () => {
 
                         <div className="flex justify-center ">
                           {cartItems.some((p) => p.id === item.id) ? (
-                            <button onClick={()=>deletecart(item)} className=" bg-red-500 hover:bg-red-600 w-full text-white py-[4px] rounded-lg font-bold">
+                            <button onClick={()=>deletecart(item)} className=" bg-gradient-to-r from-red-900 to-red-300 w-full text-white py-[4px] rounded-3xl font-bold">
                               Delete from cart
                             </button>
                           ) : (
-                            <button onClick={()=>addcart(item)} className=" bg-green-500 hover:bg-green-600 w-full text-white py-[4px] rounded-lg font-bold">
+                            <button onClick={()=>addcart(item)} className=" bg-gradient-to-r from-green-900 to-green-300 w-full text-white py-[4px] rounded-3xl font-bold">
                               Add To Cart
                             </button>
                           )}

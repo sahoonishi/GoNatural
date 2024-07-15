@@ -16,11 +16,11 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem("cartItems");
+    //localStorage.removeItem("cartItems");
     localStorage.removeItem("users");
     dispatch(deleteAll());
     // setCartData([]);
-    navigate("/");
+    navigate("/login");
   };
 
   const Kart_value = useSelector((store) => store.cart);

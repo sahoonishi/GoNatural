@@ -66,6 +66,7 @@ const Mycontext = ({ children }) => {
 
   const deleteProduct = async (id) => {
     setLoading(true);
+    console.log(id);
     try {
       await deleteDoc(doc(fireDB, "order", id));
       toast.success("Order Deleted successfully");
@@ -103,6 +104,7 @@ const Mycontext = ({ children }) => {
   };
 
   const deleteUser = async (id) => {
+    //console.log(id);
     setLoading(true);
     try {
       await deleteDoc(doc(fireDB, "user", id));
@@ -110,7 +112,7 @@ const Mycontext = ({ children }) => {
       getAllUserFunction();
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      //console.log(error.message, "..............");
       setLoading(false);
     }
   };
@@ -131,7 +133,7 @@ const Mycontext = ({ children }) => {
         getAllOrder,
         deleteProduct,
         getAllUser,
-        deleteUser
+        deleteUser,
       }}
     >
       {children}

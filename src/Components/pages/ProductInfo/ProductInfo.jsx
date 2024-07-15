@@ -81,12 +81,12 @@ const ProductInfo = () => {
               </div>
               <div className="w-full px-4 md:w-1/2">
                 <div className="lg:pl-20">
-                  <div className="mb-6 ">
+                  <div className="mb-6">
                     <h2 className=" tracking-widest text-lg title-font font-medium text-black mb-1 flex gap-2">
                       {product.title}
                       <div className="mt-1">
                         <img
-                          className="w-9 sm:w-12 md:w-16 lg:w-16"
+                          className="w-9 sm:w-12 md:w-16 lg:w-16 "
                           src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
                           alt="image"
                         />
@@ -175,7 +175,7 @@ const ProductInfo = () => {
                     ) : (
                       <button
                         onClick={() => addCart(product)}
-                        className="w-full px-4 py-3 text-center text-white bg-green-400 border border-green-400  hover:bg-green-600 hover:text-gray-100 rounded-xl"
+                        className="w-full px-4 py-3 text-center text-white bg-green-400 border bg-gradient-to-r from-green-900 to-green-300  hover:text-gray-300 rounded-xl"
                       >
                         Add to cart
                       </button>

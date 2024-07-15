@@ -3,7 +3,7 @@ import { UserContext } from "../../Context/Mycontext";
 import { MdDelete } from "react-icons/md";
 
 const UserDetail = () => {
-  const { getAllUser , deleteUser } = useContext(UserContext);
+  const { getAllUser, deleteUser } = useContext(UserContext);
 
   return (
     <div>
@@ -59,18 +59,18 @@ const UserDetail = () => {
                 >
                   Date
                 </th>
-                <th
+                {/* <th
                   scope="col"
                   className="h-12 px-6 text-md border-l first:border-l-0 border-green-100 text-slate-700 bg-slate-100 font-bold fontPara"
                 >
                   Remove User
-                </th>
+                </th> */}
               </tr>
               {getAllUser.map((item, index) => {
                 return (
                   <tr key={index} className="text-green-300">
                     <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 ">
-                      {index+1}
+                      {index + 1}
                     </td>
 
                     <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
@@ -92,10 +92,12 @@ const UserDetail = () => {
                     <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 cursor-pointer ">
                       {item.date}
                     </td>
-                    <td className="h-12 transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 cursor-pointer ">
-                    <MdDelete onClick={()=>deleteUser(item.id)} className="bg-red-600 text-white rounded-lg hover:bg-red-400 hover:scale-105 text-2xl mx-auto p-1"/>
-                      
-                    </td>
+                    {/* <td className="h-12 transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 cursor-pointer ">
+                      <MdDelete
+                        onClick={() => deleteUser(item.id)}
+                        className="bg-red-600 text-white rounded-lg hover:bg-red-400 hover:scale-105 text-2xl mx-auto p-1"
+                      />
+                    </td> */}
                   </tr>
                 );
               })}

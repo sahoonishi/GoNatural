@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 const categoryList = [
   {
-    name: "facewash",
+    name: "Facewash",
   },
   {
     name: "Cream",
@@ -110,7 +110,7 @@ const UpdateProduct = () => {
     <div>
       <div className="flex justify-center items-center h-screen">
         {/* Login Form  */}
-        <div className="login_Form bg-green-50 px-8 py-6 border border-green-100 rounded-xl shadow-md">
+        <div className="login_Form bg-green-50 px-8 py-6 w-72 sm:w-96 rounded-2xl shadow-2xl">
           {/* Top Heading  */}
           <div className="mb-5">
             <h2 className="text-center text-2xl font-bold text-gray-500 ">
@@ -128,7 +128,7 @@ const UpdateProduct = () => {
               }}
               name="title"
               placeholder="Product Title"
-              className="bg-gray-50 border text-green-300 border-green-200 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-600"
+              className="bg-gray-50 border text-green-300 border-green-200 px-2 py-2 rounded-md outline-none placeholder-gray-600 w-60 sm:w-72"
             />
           </div>
 
@@ -142,7 +142,7 @@ const UpdateProduct = () => {
                 setProduct({ ...product, price: e.target.value });
               }}
               placeholder="Product Price"
-              className="bg-gray-50 border text-green-300 border-green-200 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-600"
+              className="bg-gray-50 border text-green-300 border-green-200 px-2 py-2 rounded-md outline-none placeholder-gray-600 w-60 sm:w-72"
             />
           </div>
 
@@ -156,7 +156,7 @@ const UpdateProduct = () => {
               }}
               name="image"
               placeholder="Image Url"
-              className="bg-gray-50 border text-green-300 border-green-200 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-600"
+              className="bg-gray-50 border text-green-300 border-green-200 px-2 py-2 rounded-md outline-none placeholder-gray-600 w-60 sm:w-72"
             />
           </div>
 
@@ -167,7 +167,7 @@ const UpdateProduct = () => {
               onChange={(e) => {
                 setProduct({ ...product, category: e.target.value });
               }}
-              className="w-full px-1 py-2 text-green-300 bg-gray-50 border border-green-200 rounded-md outline-none  "
+              className=" px-1 py-2 text-green-300 bg-gray-50 border border-green-200 rounded-md outline-none w-60 sm:w-72 "
             >
               <option disabled>Select Product Category</option>
               {categoryList.map((value, index) => {
@@ -195,7 +195,7 @@ const UpdateProduct = () => {
               }}
               placeholder="Product Description"
               rows="5"
-              className=" w-full px-2 py-1 text-green-300 bg-gray-50 border border-green-200 rounded-md outline-none placeholder-gray-600 "
+              className=" px-2 py-1 text-green-300 bg-gray-50 border border-green-200 rounded-md outline-none placeholder-gray-600 w-60 sm:w-72 "
             ></textarea>
           </div>
 
@@ -204,7 +204,7 @@ const UpdateProduct = () => {
             <button
               type="button"
               onClick={updateProduct}
-              className="bg-green-500 hover:bg-green-600 w-full text-white text-center py-2 font-bold rounded-md "
+              className="bg-gradient-to-r from-green-900 to-green-400 w-full text-white text-center py-2 font-bold rounded-md "
             >
               Update Product
             </button>

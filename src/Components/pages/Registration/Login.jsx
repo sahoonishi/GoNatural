@@ -52,17 +52,19 @@ const Login = () => {
           let user;
           QuerySnapshot.forEach((doc) => (user = doc.data()));
           localStorage.setItem("users", JSON.stringify(user));
+
           setUserLogin({
             email: "",
             password: "",
           });
           toast.success("Login Successfully");
           setLoading(false);
-          if (user.role === "user") {
-            navigate("/");
-          } else {
-            navigate("/");
-          }
+          navigate("/");
+          // if (user.role === "user") {
+          //   navigate("/user-dashboard");
+          // } else {
+          //   navigate("/admin-dashboard");
+          // }
         });
         return () => data;
       } catch (error) {
@@ -79,7 +81,7 @@ const Login = () => {
     <div className="flex justify-center items-center h-screen">
       {loading && <Loader />}
       {/* Login Form  */}
-      <div className="login_Form bg-green-50 border border-black rounded-xl shadow-md w-72 lg:w-fit px-1 lg:px-8 py-6">
+      <div className="login_Form border-black rounded-xl shadow-2xl w-72 lg:w-fit px-1 lg:px-8 py-6">
         {/* Top Heading  */}
         <div className="mb-5">
           <h2 className="text-center text-2xl font-bold text-green-500 ">
@@ -125,7 +127,7 @@ const Login = () => {
           <button
             type="button"
             onClick={userLoginFunction}
-            className="bg-green-500 hover:bg-green-600  w-60  border-green-200 px-2 lg:w-96 text-white text-center py-2 font-bold rounded-md "
+            className="bg-gradient-to-r from-green-900 to-green-300   w-60  border-green-200 px-2 lg:w-96 text-white text-center py-2 font-bold rounded-md "
           >
             Login
           </button>
@@ -133,19 +135,17 @@ const Login = () => {
 
         <div>
           <h2 className="text-black m-5">
-            Don't Have an account ? { }
+            Don't Have an account ? {}
             <Link className=" text-green-500 font-bold" to={"/signup"}>
-               Signup
+              Signup
             </Link>
           </h2>
         </div>
         <div className="ml-4 -mt-2">
-              <Link className=" text-3xl " to={"/signup"}>
-              <IoArrowBackCircleOutline className="hover:scale-125 transition-all"/>
-              
-              </Link>
-            </div>
-        
+          <Link className=" text-3xl " to={"/signup"}>
+            <IoArrowBackCircleOutline className="hover:scale-125 transition-all" />
+          </Link>
+        </div>
       </div>
     </div>
   );
