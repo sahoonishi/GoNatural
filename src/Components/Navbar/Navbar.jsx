@@ -20,7 +20,7 @@ const Navbar = () => {
     localStorage.removeItem("users");
     dispatch(deleteAll());
     // setCartData([]);
-    navigate("/login");
+    navigate("/");
   };
 
   const Kart_value = useSelector((store) => store.cart);

@@ -110,7 +110,7 @@ const UpdateProduct = () => {
     <div>
       <div className="flex justify-center items-center h-screen">
         {/* Login Form  */}
-        <div className="login_Form bg-green-50 px-8 py-6 w-72 sm:w-96 rounded-2xl shadow-2xl">
+        <div className="login_Form  px-8 py-6 w-72 sm:w-96 rounded-2xl shadow-2xl">
           {/* Top Heading  */}
           <div className="mb-5">
             <h2 className="text-center text-2xl font-bold text-gray-500 ">
