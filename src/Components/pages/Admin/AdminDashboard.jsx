@@ -6,6 +6,7 @@ import Layout from "../../Layout/Layout";
 import { useContext, useRef } from "react";
 import { UserContext } from "../../../Context/Mycontext";
 import ScrollToTop from './../../../ScrollToTop';
+import { useSelector } from "react-redux";
 
 
 
@@ -14,6 +15,8 @@ const AdminDashboard = () => {
   const user = JSON.parse(localStorage.getItem('users'));
   const context = useContext(UserContext);
   const{getAllProduct , getAllOrder , getAllUser}=context;
+  //console.log(getAllOrder);
+ // const cartItems = useSelector((state)=>state.cart);
 
   
 
