@@ -29,7 +29,7 @@ const Checkout = ({ total, handleSucess, buyNow , handleOpen }) => {
         }}
         className="w-full bg-gradient-to-r from-green-900 to-green-500 rounded-full font-medium text-white text-xl font-DM tracking-wider"
       >
-        Pay Rs.{total}
+        Pay Rs. {total}
       </button>
     </StripeCheckout>
   );
