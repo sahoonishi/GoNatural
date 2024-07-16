@@ -37,6 +37,9 @@ const HomepageProductcard = () => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  const x = Math.floor(Math.random()*10);
+  const y = x+4;
+
   return (
     <div className="mt-10 font-DM">
       {/* Heading  */}
@@ -51,7 +54,7 @@ const HomepageProductcard = () => {
         <div className="container px-5 py-5 mx-auto">
           <div className="flex flex-wrap justify-center -m-4">
             {loading && <Loader />}
-            {getAllProduct.slice(1, 5).map((item) => {
+            {getAllProduct.slice(x,y).map((item) => {
               const { image, title, price, id } = item;
 
               return (

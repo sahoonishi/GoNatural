@@ -16,6 +16,7 @@ import BuyNow from "../../BuyNow/BuyNow";
 import { fireDB } from "../../../Firebase/FirebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
 
+
 const CartPage = () => {
   const cartItems = useSelector((store) => store.cart);
   const navigate = useNavigate();
@@ -73,64 +74,62 @@ const CartPage = () => {
 
   // ADDRESS INFO STATE
 
-  const [address, setaddress] = useState({
-    name: "",
-    address: "",
-    pincode: "",
-    mobile: "",
-    date: new Date().toLocaleString("en-US", {
-      month: "long",
-      day: "2-digit",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    }),
-  });
+  // const [address, setaddress] = useState({
+  //   name: "",
+  //   address: "",
+  //   pincode: "",
+  //   mobile: "",
+  //   date: new Date().toLocaleString("en-US", {
+  //     month: "long",
+  //     day: "2-digit",
+  //     year: "numeric",
+  //     hour: "numeric",
+  //     minute: "numeric",
+  //   }),
+  // });
 
   // BUYNOW FUNCTION
 
-  const buyNow = () => {
-    if (
-      address.name === "" ||
-      address.address === "" ||
-      address.pincode === "" ||
-      address.mobileNumber === ""
-    ) {
-      return toast.error("All Fields are required");
-    }
-    const orderInfo = {
-      cartItems,
-      address,
-      email: user.email,
-      userid: user.uid,
-      status: "confirmed",
-      // time: Timestamp.now(),
-      date: new Date().toLocaleString("en-US", {
-        month: "short",
-        day: "2-digit",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-      }),
-    };
+  // const buyNow = () => {
+  //   if (
+  //     address.name === "" ||
+  //     address.address === "" ||
+  //     address.pincode === "" ||
+  //     address.mobileNumber === ""
+  //   ) {
+  //     return toast.error("All Fields are required");
+  //   }
+  //   const orderInfo = {
+  //     cartItems,
+  //     address,
+  //     email: user.email,
+  //     userid: user.uid,
+  //     status: "confirmed",
+  //     // time: Timestamp.now(),
+  //     date: new Date().toLocaleString("en-US", {
+  //       month: "short",
+  //       day: "2-digit",
+  //       year: "numeric",
+  //       hour: "numeric",
+  //       minute: "numeric",
+  //     }),
+  //   };
 
-
-    
-
-    try {
-      const orderRef = collection(fireDB, "order");
-      addDoc(orderRef, orderInfo);
-      setaddress({
-        name: "",
-        address: "",
-        pincode: "",
-        mobile: "",
-      });
-      toast.success("Order Placed Successfull");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //   try {
+  //     const orderRef = collection(fireDB, "order");
+  //     addDoc(orderRef, orderInfo);
+  //     setaddress({
+  //       name: "",
+  //       address: "",
+  //       pincode: "",
+  //       mobile: "",
+  //     });
+  //     toast.success("Order Placed Successfull");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  const total = cartTotalPrice + 99;
 
   return (
     <Layout>
@@ -280,14 +279,13 @@ const CartPage = () => {
                   </dl>
                   <div className="px-2 pb-4 font-medium text-green-700">
                     <div className="flex gap-4 mb-6">
-                      {user ? <BuyNow
-                        address={address}
-                        setaddress={setaddress}
-                        buyNow={buyNow}
-                      
-                       /> : 
-                      
-                      <Navigate to={"/login"} />}
+                      {user ? (
+                        <>
+                          <BuyNow total={total} />
+                        </>
+                      ) : (
+                        <Navigate to={"/login"} />
+                      )}
                     </div>
                   </div>
                 </div>

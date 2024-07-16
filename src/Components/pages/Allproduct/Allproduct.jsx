@@ -42,11 +42,17 @@ const AllProduct = () => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const pageHandler=(selectedpage)=>{
-    if(selectedpage>=1 && selectedpage<=getAllProduct.length/3 && selectedpage !==page)
-    setPage(selectedpage);
-  }
+  const pageHandler = (selectedpage) => {
+    if (
+      selectedpage >= 1 &&
+      selectedpage <= getAllProduct.length / 3 &&
+      selectedpage !== page
+    )
+      setPage(selectedpage);
+  };
+  //console.log(getAllProduct.length);
 
+  const tp = Math.ceil(getAllProduct.length / 3);
   return (
     <Layout>
       <div className="py-5">
@@ -72,7 +78,7 @@ const AllProduct = () => {
                   return (
                     <div
                       key={index}
-                      className="p-4  w-72 sm:w-1/2 md:w-1/3 lg:w-1/4"
+                      className="p-4  w-72 sm:w-1/2 md:w-1/3 lg:w-1/4 transition-all"
                     >
                       <div className=" shadow-2xl rounded-3xl overflow-hidden cursor-pointer hover:scale-105 transition-all outline-none w-full ">
                         <img
@@ -123,12 +129,44 @@ const AllProduct = () => {
                 })}
 
               {getAllProduct.length > 0 && (
-                <div className="flex justify-center items-center w-full mt-4 gap-6 text-xl">
-                  <span onClick={()=>pageHandler(page-1)} className={page<getAllProduct.length/3?"bg-gray-300 text-black object-contain text-center rounded-lg cursor-pointer p-1":"opacity-0"}>Back</span>
-                  {Array.from({length: getAllProduct.length / 3}).map((_, i) => (
-                    <span onClick={()=>pageHandler(i+1)} key={i+1} className={page===i+1?"bg-gradient-to-t from-green-600 to-green-300 w-8 text-center rounded-full text-white transition-all cursor-pointer text-3xl":"cursor-pointer text-black text-base"}>{i + 1}</span>
-                  ))}
-                  <span onClick={()=>pageHandler(page+1)} className={page<getAllProduct.length/3?"bg-gray-300 text-black object-contain text-center rounded-lg cursor-pointer p-1":"opacity-0"}>Next</span>
+                <div className="flex justify-center w-96 lg:w-full mt-4 gap-6 text-xl">
+                  <div className="flex gap-2 items-center">
+                    <span
+                      onClick={() => pageHandler(page - 1)}
+                      className={
+                        page > 1
+                          ? "bg-gray-300 text-black object-contain text-center rounded-lg cursor-pointer p-1"
+                          : "opacity-0"
+                      }
+                    >
+                      Back
+                    </span>
+                    {Array.from({
+                      length: Math.ceil(getAllProduct.length / 4),
+                    }).map((_, i) => (
+                      <span
+                        onClick={() => pageHandler(i + 1)}
+                        key={i + 1}
+                        className={
+                          page === i + 1
+                            ? "bg-gradient-to-t from-green-600 to-green-300 w-8 text-center rounded-full text-white transition-all cursor-pointer text-3xl"
+                            : "cursor-pointer text-black text-base"
+                        }
+                      >
+                        {i + 1}
+                      </span>
+                    ))}
+                    <span
+                      onClick={() => pageHandler(page + 1)}
+                      className={
+                        page !== Math.ceil(getAllProduct.length / 4)
+                          ? "bg-gray-300 text-black object-contain text-center rounded-lg cursor-pointer p-1"
+                          : "opacity-0 hidden"
+                      }
+                    >
+                      Next
+                    </span>
+                  </div>
                 </div>
               )}
             </div>

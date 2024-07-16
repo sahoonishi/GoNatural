@@ -157,7 +157,7 @@ const Userdashboard = () => {
                 })
             ) : (
               <div className="flex w-full justify-center mt-10">
-                <img className="w-40" src="./image/man.png" alt="image" />
+                <img className="w-40" src="" alt="image" />
               </div>
             )}
           </div>
