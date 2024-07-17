@@ -15,9 +15,9 @@ export const cartSlice = createSlice({
     deleteFromCart(state, action) {
       return state.filter((item) => item.id !== action.payload.id);
     },
-    deleteAll:(state)=>{
-        return state=[];
-
+    deleteAll:()=>{
+        return [];
+;
     },
     incrementQuantity:(state, action)=> {
       state = state.map((item) => {

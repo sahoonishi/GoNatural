@@ -1,5 +1,6 @@
 import { Button, Dialog, DialogBody } from "@material-tailwind/react";
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import Checkout from "./Checkout";
 import { deleteAll } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -211,6 +212,9 @@ const BuyNow = ({ total }) => {
       </Dialog>
     </>
   );
+};
+BuyNow.propTypes = {
+  total: PropTypes.number.isRequired,
 };
 
 export default BuyNow;

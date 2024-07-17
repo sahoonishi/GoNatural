@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
   // Search State
   const [search, setSearch] = useState("");
-  const [empty, setEmpty] = useState(false);
+ // const [empty, setEmpty] = useState(false);
   const { getAllProduct } = useContext(UserContext);
   const navigate = useNavigate();
 

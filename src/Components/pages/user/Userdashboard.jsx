@@ -1,11 +1,14 @@
 import { useContext } from "react";
 import Layout from "../../Layout/Layout";
 import { UserContext } from "../../../Context/Mycontext";
+//import { useSelector } from "react-redux";
+
 
 const Userdashboard = () => {
   const user = JSON.parse(localStorage.getItem("users"));
-  const { getAllOrder, loading } = useContext(UserContext);
+  const { getAllOrder } = useContext(UserContext);
   const num = getAllOrder.filter((obj) => obj.userid === user.uid);
+  
   console.log(num);
 
   return (
