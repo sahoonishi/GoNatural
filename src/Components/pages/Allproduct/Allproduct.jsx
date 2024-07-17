@@ -55,7 +55,7 @@ const AllProduct = () => {
   const tp = Math.ceil(getAllProduct.length / 3);
   return (
     <Layout>
-      <div className="py-5">
+      <div className="py-1">
         {/* Heading  */}
         <div className="">
           <h1 className=" text-center  text-2xl font-DM font-bold underline">
@@ -127,52 +127,51 @@ const AllProduct = () => {
                     </div>
                   );
                 })}
-
-              {getAllProduct.length > 0 && (
-                <div className="flex justify-center w-96 lg:w-full mt-4 gap-6 text-xl">
-                  <div className="flex gap-2 items-center">
-                    <span
-                      onClick={() => pageHandler(page - 1)}
-                      className={
-                        page > 1
-                          ? "bg-gray-300 text-black object-contain text-center rounded-lg cursor-pointer p-1"
-                          : "opacity-0"
-                      }
-                    >
-                      Back
-                    </span>
-                    {Array.from({
-                      length: Math.ceil(getAllProduct.length / 4),
-                    }).map((_, i) => (
-                      <span
-                        onClick={() => pageHandler(i + 1)}
-                        key={i + 1}
-                        className={
-                          page === i + 1
-                            ? "bg-gradient-to-t from-green-600 to-green-300 w-8 text-center rounded-full text-white transition-all cursor-pointer text-3xl"
-                            : "cursor-pointer text-black text-base"
-                        }
-                      >
-                        {i + 1}
-                      </span>
-                    ))}
-                    <span
-                      onClick={() => pageHandler(page + 1)}
-                      className={
-                        page !== Math.ceil(getAllProduct.length / 4)
-                          ? "bg-gray-300 text-black object-contain text-center rounded-lg cursor-pointer p-1"
-                          : "opacity-0 hidden"
-                      }
-                    >
-                      Next
-                    </span>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </section>
       </div>
+      {getAllProduct.length > 0 && (
+        <div className="flex  justify-center ">
+          <div className="flex  justify-center w-60 sm:w-full mt-4 gap-2 sm:gap-4 text-xl items-center">
+            <span
+              onClick={() => pageHandler(page - 1)}
+              className={
+                page > 1
+                  ? "bg-gray-300 text-black object-contain text-center rounded-lg cursor-pointer p-1"
+                  : "opacity-0"
+              }
+            >
+              Back
+            </span>
+            {Array.from({
+              length: Math.ceil(getAllProduct.length / 4),
+            }).map((_, i) => (
+              <span
+                onClick={() => pageHandler(i + 1)}
+                key={i + 1}
+                className={
+                  page === i + 1
+                    ? "bg-gradient-to-t from-green-600 to-green-300 w-8 text-center rounded-full text-white transition-all cursor-pointer text-3xl"
+                    : "cursor-pointer text-black text-base"
+                }
+              >
+                {i + 1}
+              </span>
+            ))}
+            <span
+              onClick={() => pageHandler(page + 1)}
+              className={
+                page !== Math.ceil(getAllProduct.length / 4)
+                  ? "bg-gray-300 text-black object-contain text-center rounded-lg cursor-pointer p-1"
+                  : "opacity-0 hidden"
+              }
+            >
+              Next
+            </span>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 };

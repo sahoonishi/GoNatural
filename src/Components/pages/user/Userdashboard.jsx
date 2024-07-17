@@ -5,6 +5,8 @@ import { UserContext } from "../../../Context/Mycontext";
 const Userdashboard = () => {
   const user = JSON.parse(localStorage.getItem("users"));
   const { getAllOrder, loading } = useContext(UserContext);
+  const num = getAllOrder.filter((obj) => obj.userid === user.uid);
+  console.log(num);
 
   return (
     <Layout>
@@ -45,10 +47,11 @@ const Userdashboard = () => {
             </h2>
 
             {/* main 2 */}
-            {getAllOrder.length > 0 ? (
+            {num.length !=0 ? (
               getAllOrder
                 .filter((obj) => obj.userid === user.uid)
                 .map((order, index) => {
+                  console.log(order.length);
                   return (
                     <div key={index}>
                       {order.cartItems.map((item, index) => {
@@ -156,8 +159,8 @@ const Userdashboard = () => {
                   );
                 })
             ) : (
-              <div className="flex w-full justify-center mt-10">
-                <img className="w-40" src="" alt="image" />
+              <div className="flex w-full justify-center mt-9">
+                <img className="w-32" src="/image/man.png" alt="" />
               </div>
             )}
           </div>
