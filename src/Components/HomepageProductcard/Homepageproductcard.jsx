@@ -37,7 +37,8 @@ const HomepageProductcard = () => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const x = Math.floor(Math.random()*10);
+  // const x = Math.floor(Math.random()*10);
+  const x=0;
   const y = x+4;
 
   return (
