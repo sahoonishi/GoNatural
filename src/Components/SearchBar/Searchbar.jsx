@@ -15,9 +15,9 @@ const SearchBar = () => {
   const filterSearchData = getAllProduct
     .filter(
       (obj) =>
-        obj.title.toLowerCase().includes(search) ||
-        obj.category.toLowerCase().includes(search) ||
-        obj.description.toLowerCase().includes(search)
+        obj.title.toLowerCase().includes(search.toLowerCase()) ||
+        obj.category.toLowerCase().includes(search.toLowerCase()) ||
+        obj.description.toLowerCase().includes(search.toLowerCase())
     )
     .slice(0, 8);
   const cleartext = () => {
@@ -29,6 +29,7 @@ const SearchBar = () => {
       <div className="  input flex justify-center border rounded-md w-60 sm:mx-auto mx-auto">
         <input
           type="text"
+          autoFocus
           value={search}
           placeholder="Search here"
           onChange={(e) => setSearch(e.target.value)}
