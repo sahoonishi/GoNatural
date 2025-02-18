@@ -1,13 +1,13 @@
-html, body {
+/* html, body {
   height: 100%;
-}
+} */
 
-body {
+/* body {
   align-items: center;
-/*   background-color: #1D1F20; */
+  background-color: #1D1F20;
   display: flex;
   justify-content: center;
-}
+} */
 
 .loader  {
   animation: rotate 1s infinite;  
