@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect , useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/Mycontext";
 import Loader from "../Loader/Loader";
@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 const HomepageProductcard = () => {
   const navigate = useNavigate();
   const { getAllProduct, loading } = useContext(UserContext);
-
+  const [x,setX]=useState(0);
   const cartItems = useSelector((state) => state.cart);
 
   const user = JSON.parse(localStorage.getItem("users"));
@@ -36,11 +36,10 @@ const HomepageProductcard = () => {
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
-
-  const x = Math.floor(Math.random()*10);
-  // const x=0;
+  useEffect(()=>{
+       setX(Math.floor(Math.random()*10));
+  },[]);
   const y = x+4;
-
   return (
     <div className="mt-10 font-DM">
       {/* Heading  */}
