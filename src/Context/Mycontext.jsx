@@ -45,7 +45,8 @@ const Mycontext = ({ children }) => {
   const getAllOrderFunction = async () => {
     setLoading(true);
     try {
-      const q = query(collection(fireDB, "order"), orderBy("date"),"desc");
+      // const q = query(collection(fireDB, "order"), orderBy("date"),"desc");
+      const q = query(collection(fireDB, "order"), orderBy("date", "desc"));
 
       const data = onSnapshot(q, (QuerySnapshot) => {
         let orderarray = [];
