@@ -131,7 +131,7 @@ const OrderDetail = () => {
                   Action
                 </th>
               </tr>
-              {getAllOrder.map((order) => {
+              {getAllOrder.map((order,orderIndex) => {
                 //console.log(order.id);
                 return (
                   <React.Fragment key={order.id}>
@@ -139,9 +139,9 @@ const OrderDetail = () => {
                       const { id, image, title, category, price, quantity } =
                         item;
                       return (
-                        <tr key={index} className="text-green-300">
+                        <tr key={id} className="text-green-300">
                           <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 ">
-                            {index + 1}
+                            {orderIndex + 1}
                           </td>
 
                           <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 ">
