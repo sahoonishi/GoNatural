@@ -3,10 +3,10 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import toast from "react-hot-toast";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword,sendPasswordResetEmail } from "firebase/auth";
 import { auth, fireDB } from "../../../Firebase/FirebaseConfig";
 
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, onSnapshot, query, where ,getDocs } from "firebase/firestore";
 import { UserContext } from "../../../Context/Mycontext";
 import Loader from "../../Loader/Loader";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
@@ -27,6 +27,35 @@ const Login = () => {
   /**========================================================================
    *                          User Login Function
    *========================================================================**/
+  const handleForgotPassword = async () => {
+    if (!userLogin.email) {
+      toast.error("Please enter your email first.");
+      return;
+    }
+  
+    setLoading(true);
+    try {
+      // Check if email exists in Firestore "user" collection
+      const q = query(collection(fireDB, "user"), where("email", "==", userLogin.email));
+      const querySnapshot = await getDocs(q);
+  
+      if (querySnapshot.empty) {
+        toast.error("No account found with this email.");
+        setLoading(false);
+        return;
+      }
+  
+      // Send password reset email
+      await sendPasswordResetEmail(auth, userLogin.email);
+      toast.success("Password reset email sent! Check your inbox.");
+    } catch (error) {
+      toast.error("Error sending reset email. Try again.");
+      console.log(error);
+    }
+    setLoading(false);
+  };
+  
+  
 
   const userLoginFunction = async () => {
     // validation
@@ -146,6 +175,16 @@ const Login = () => {
             <IoArrowBackCircleOutline className="hover:scale-125 transition-all" />
           </Link>
         </div>
+        <div className="text-center mb-4">
+         <button
+            onClick={handleForgotPassword}
+            className="text-green-500 hover:underline"
+          >
+            Forgot Password?
+         </button>
+        </div>
+
+        
       </div>
     </div>
   );

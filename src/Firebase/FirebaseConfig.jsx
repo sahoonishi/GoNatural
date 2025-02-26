@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 
 // Your web app's Firebase configuration
@@ -21,5 +21,6 @@ const app = initializeApp(firebaseConfig);
 const fireDB = getFirestore(app);
 
 const auth = getAuth(app);
+auth.useDeviceLanguage();
+export { app, fireDB, auth , RecaptchaVerifier, signInWithPhoneNumber };
 
-export { app, fireDB, auth };
