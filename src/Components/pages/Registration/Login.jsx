@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import toast from "react-hot-toast";
-import { signInWithEmailAndPassword,sendPasswordResetEmail } from "firebase/auth";
+import { signInWithEmailAndPassword,sendPasswordResetEmail, deleteUser } from "firebase/auth";
 import { auth, fireDB } from "../../../Firebase/FirebaseConfig";
 
 import { collection, onSnapshot, query, where ,getDocs } from "firebase/firestore";
@@ -70,35 +70,50 @@ const Login = () => {
         userLogin.email,
         userLogin.password
       );
-      // console.log(users.user)
-
-      try {
-        const q = query(
-          collection(fireDB, "user"),
-          where("uid", "==", users?.user?.uid)
-        );
-        const data = onSnapshot(q, (QuerySnapshot) => {
-          let user;
-          QuerySnapshot.forEach((doc) => (user = doc.data()));
-          localStorage.setItem("users", JSON.stringify(user));
-
-          setUserLogin({
-            email: "",
-            password: "",
-          });
-          toast.success("Login Successfully");
-          setLoading(false);
-          navigate("/");
-          // if (user.role === "user") {
-          //   navigate("/user-dashboard");
-          // } else {
-          //   navigate("/admin-dashboard");
-          // }
-        });
-        return () => data;
-      } catch (error) {
-        console.log(error);
+      const currentUserMain = users.user;
+      console.log(currentUserMain.emailVerified);
+      if (currentUserMain && !currentUserMain.emailVerified) {
+        console.log("hi")
+        await deleteUser(currentUserMain); 
+        console.log("hell") // Delete unverified user
+        toast.error("Email not been verified. You can sign up again.");
         setLoading(false);
+        navigate("/signup");
+        
+      } else {
+        try {
+          const users = await signInWithEmailAndPassword(
+            auth,
+            userLogin.email,
+            userLogin.password
+          );
+          const q = query(
+            collection(fireDB, "user"),
+            where("uid", "==", users?.user?.uid)
+          );
+          const data = onSnapshot(q, (QuerySnapshot) => {
+            let user;
+            QuerySnapshot.forEach((doc) => (user = doc.data()));
+            localStorage.setItem("users", JSON.stringify(user));
+  
+            setUserLogin({
+              email: "",
+              password: "",
+            });
+            toast.success("Login Successfully");
+            setLoading(false);
+            navigate("/");
+            // if (user.role === "user") {
+            //   navigate("/user-dashboard");
+            // } else {
+            //   navigate("/admin-dashboard");
+            // }
+          });
+          return () => data;
+        } catch (error) {
+          console.log(error);
+          setLoading(false);
+        }
       }
     } catch (error) {
       console.log(error);
