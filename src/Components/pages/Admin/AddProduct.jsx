@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState ,React } from "react";
 import axios from "axios";
 import { UserContext } from "../../../Context/Mycontext";
 import { addDoc, collection } from "firebase/firestore";
@@ -9,8 +9,6 @@ import Loader from "../../Loader/Loader";
 // const cloudName=process.env.cloudName;
 // const cloudName = import.meta.env.cloudName;
 // const preset = import.meta.env.preset;
-const cloudName = import.meta.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
-const uploadPreset = import.meta.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
 const categoryList = [
   { name: "Facesah" }, { name: "Sunscreen" }, { name: "Cream" }, { name: "Hairoil" }, { name: "Shampoo" },
@@ -43,12 +41,13 @@ const AddProduct = () => {
   const uploadImageToCloudinary = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", `woolywonder`); // Replace with your Cloudinary preset
-    formData.append("cloud_name", `dgp1xc81d`); // Replace with your Cloudinary cloud name
+    formData.append("upload_preset", `${import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET}`); // Replace with your Cloudinary preset
+    formData.append("cloud_name", `${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}`); // Replace with your Cloudinary cloud name
 
     try {
+      console.log(cloudName);
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dgp1xc81d/image/upload`,
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`,
         formData
       );
       return response.data.secure_url;

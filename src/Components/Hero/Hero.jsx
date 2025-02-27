@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { fadeIn } from "../../variants";
 import CountUp from "react-countup";
 import { collection } from "firebase/firestore";
+import { UserContext } from "../../Context/Mycontext";
+import { Button } from './../../Styles';
 
 const Hero = () => {
   const [hasLoaded, setHasLoaded] = useState(true);
+    const { getAllProduct } = useContext(UserContext);
 
   useEffect(() => {
     // Set hasLoaded to true after the component has mounted
@@ -14,8 +17,8 @@ const Hero = () => {
     }
   }, [hasLoaded]); // Empty dependency array ensures this runs only once on mount
   return (
-    <div className=" bg-gradient-to-b from-green-900 to-green-400 h-[405px] border-gray-800 position-relative w-full">
-      <div className="text-white flex sm:justify-between justify-center flex-wrap">
+    <div className=" bg-gradient-to-b from-primaryMain to-primaryMain/80 h-auto lg:h-[80vh] border-gray-800 position-relative w-full">
+      <div className="text-white flex h-full sm:justify-between justify-center flex-wrap">
         {/* <motion.div
           variants={fadeIn("down", 0.2)}
           initial={hasLoaded ? "hidden" : false} // Initial state based on hasLoaded
@@ -28,18 +31,18 @@ const Hero = () => {
           <div> to live</div> <div>for yourself</div>
         </motion.div> */}
         <motion.h1
-          initial= {hasLoaded ? { y: "3rem", opacity: 0 } :false} 
-          animate= {hasLoaded ? { y: 0, opacity: 1 } :false}
+          initial= {hasLoaded ? { x: "-3rem", opacity: 0 } :false} 
+          animate= {hasLoaded ? { x: "0", opacity: 1 } :false}
           transition={{
             duration: 2,
             type: "ease-in",
           }}
-          className="text-white font-semibold  flex font-DM text-4xl px-5  sm:text-5xl mt-16 flex-col sm:ml-14"
+          className="text-black/60 justify-center font-semibold  flex font-DM text-4xl px-5  sm:text-5xl lg:text-7xl mt-16 flex-col sm:ml-14"
         >
           <div>Time </div>
-          <div> to live</div> <div>for yourself</div>
+          <div> to live</div> <div className="text-primaryLight">for yourself</div>
 
-          <div className="flex sm:gap-20 sm:text-xl text-xl gap-8 font-normal  mt-10 text-gray-300 ">
+          {/* <div className="flex sm:gap-20 sm:text-xl text-xl gap-8 font-normal  mt-10 text-gray-300 ">
             <div className="grid ">
               <span className="">
                 <CountUp end={70} /> <span>+</span>
@@ -68,24 +71,41 @@ const Hero = () => {
                 <span className="">count</span>
               </span>
             </div>
+          </div> */}
+          <div className="border border-textColor/50 text-xl ring-1 ring-primaryLight ring-offset-gray-600 rounded-md lg:text-xl flex gap-2 text-black hover:text-white mt-4  w-fit">
+            <button className="bg-primaryLight rounded-md px-2 py-1 font-extralight">Get Started</button>
+            
           </div>
         </motion.h1>
-        {/* <motion.h1
+        <motion.h1
           initial={{ x: "3rem", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{
             duration: 2,
             type: "ease-in",
           }}
+          className=" px-12"
         >
-          <div className="my-5 mr-28 mx-auto sm:block block md:w-20 lg:w-96 w-20">
+          <div className="my-5 mr-28 mx-auto hidden rounded-2xl sm:block relative md:w-20 lg:w-full h-[400px] w-20">
             <img
-              className=" opacity-90"
-              src="public/image/hand-drawn-cruelty-free-vegan-concept.png"
+              className="h-full w-full  rounded-2xl object-cover "
+              src="/landing/heroBg.png"
               alt=""
             />
+            <div className="border absolute top-12 -left-20 grid grid-cols-2 gap-x-4 gap-y-12 border-black">
+              {getAllProduct.slice(0,4).map((item,index)=>{
+                return (
+                <div key={index} className="h-32 relative w-32 border bg-[#e9beb3] border-black">
+                <img
+              className="h-full w-full -top-4 absolute rounded-2xl object-cover "
+              src={""}
+              alt=""
+            />
+                </div>)
+              })}
+            </div>
           </div>
-        </motion.h1> */}
+        </motion.h1>
       </div>
     </div>
   );
