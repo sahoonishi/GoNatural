@@ -26,7 +26,7 @@ const AddProduct = () => {
     title: "",
     price: "",
     image: null,
-    previewImage: "",
+    // previewImage: "",
     description: "",
     category: "",
     quantity: 1,
@@ -69,12 +69,12 @@ const AddProduct = () => {
 
     setProduct((prev) => ({ ...prev, image: file }));
 
-    // Preview Image
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setProduct((prev) => ({ ...prev, previewImage: reader.result }));
-    };
-    reader.readAsDataURL(file);
+    // // Preview Image
+    // const reader = new FileReader();
+    // reader.onloadend = () => {
+    //   setProduct((prev) => ({ ...prev, previewImage: reader.result }));
+    // };
+    // reader.readAsDataURL(file);
   };
 
   // ✅ Add Product to Firebase
@@ -96,7 +96,7 @@ const AddProduct = () => {
         title: "",
         price: "",
         image: null,
-        previewImage: "",
+        // previewImage: "",
         description: "",
         category: "",
         quantity: 1,
@@ -122,7 +122,7 @@ const AddProduct = () => {
 
         <input type="file" accept="image/*" onChange={handleImageChange} className="bg-green-50 text-pink-300 border px-2 py-2 w-full rounded-md outline-none mt-3" />
 
-        {product.previewImage && <img src={product.previewImage} alt="Preview" className="w-full h-16 mt-3 rounded-md" />}
+        {/* {product.previewImage && <img src={product.previewImage} alt="Preview" className="w-full h-16 mt-3 rounded-md" />} */}
 
         <select value={product.category} onChange={(e) => setProduct({ ...product, category: e.target.value })}
           className="w-full px-2 py-2 text-pink-300 bg-green-50 border rounded-md outline-none mt-3">
