@@ -32,37 +32,30 @@ const Signup = () => {
         return;
       }
   
-      // ✅ Check if the email is already in use
-      // const signInMethods = await fetchSignInMethodsForEmail(auth, userSignup.email);
-      // console.log(auth.currentUser);
-      
-      // if (signInMethods.length > 0) {
-      //   // Email exists → Try deleting if it's unverified
-      //   console.log("hi")
-      //   const currentUser = auth.currentUser;
-      //   console.log(currentUser.emailVerified);
-      //   if (currentUser && !currentUser.emailVerified) {
-      //     await deleteUser(currentUser);  // Delete unverified user
-      //     toast.success("Previous unverified account removed. You can sign up again.");
-      //   } else {
-      //     toast.error("This email is already registered. Please log in.");
-      //     setLoading(false);
-      //     return;
-      //   }
-      // }
-
-        //       const currentUserMain = auth.currentUser;
-        // console.log(currentUserMain.emailVerified);
-        // if (currentUserMain && !currentUserMain.emailVerified) {
-        //   console.log("hi")
-        //   await deleteUser(currentUserMain); 
-        //   console.log("hell") // Delete unverified user
-        //   toast.success("Previous unverified account removed. You can sign up again.");
-        // } else {
-        //   toast.error("This email is already registered. Please log in.");
-        //   setLoading(false);
-        //   return;
-        // }
+      // Check if the user has already initiated the signup process and if they are unverified
+      const previousUserSignupStatus = sessionStorage.getItem("userSignupStarted");
+      if (previousUserSignupStatus) {
+        // Check if the user already exists in Firebase auth and hasn't verified their email
+        const user = auth.currentUser;
+  
+        if (user && !user.emailVerified) {
+          // User exists, but email is unverified
+          const deleteTimer = setTimeout(async () => {
+            await deleteUser(user); // Delete the unverified user
+            clearTimeout(deleteTimer); // Clear the timeout
+            sessionStorage.removeItem("userSignupStarted");
+            toast.error("Verification time expired. Please sign up again.");
+            setDisable(false);
+            setLoading(false);
+            navigate("/signup");
+          }, 600); // 1 minute timeout (you can adjust as needed)
+  
+          return; // Exit early, since the user has already initiated the signup process
+        }
+        // toast.error("This email is already registered. Please log in.");
+        // setLoading(false);
+        // return;
+      }
   
       // ✅ Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, userSignup.email, userSignup.password);
@@ -72,6 +65,9 @@ const Signup = () => {
       await sendEmailVerification(currentUser);
       toast.success("Verification email sent! Please check your inbox.");
   
+      // Store the flag to track the signup status
+      sessionStorage.setItem('userSignupStarted', true);
+  
       // ✅ Wait for email verification before adding to Firestore
       const checkVerification = setInterval(async () => {
         setDisable(true);
@@ -79,7 +75,7 @@ const Signup = () => {
   
         if (currentUser.emailVerified) {
           clearInterval(checkVerification);
-          clearTimeout(deleteTimer); // Prevent deletion
+          clearTimeout(deleteTimer); // Prevent deletion if verified
   
           // ✅ Add user to Firestore
           const user = {
@@ -97,18 +93,18 @@ const Signup = () => {
         }
       }, 3000);
   
-      // ❌ Delete unverified user after 10 minutes
+      // ❌ Delete unverified user after 1 minute if not verified
       const deleteTimer = setTimeout(async () => {
-        await currentUser.delete();
-        clearInterval(checkVerification);
+        await deleteUser(currentUser); // Delete the unverified user
+        clearInterval(checkVerification); // Clear the interval to stop checking for verification
         toast.error("Verification time expired. Please sign up again.");
         setDisable(false);
-      }, 1 * 60 * 1000); // 1 minutes
+      }, 1 * 60 * 1000); // 1 minute timeout
   
       setLoading(false);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        toast.error("This email is already registered. Please log in .");
+        toast.error("This email is already registered. Please log in.");
       } else {
         console.log(error);
         toast.error(error.message);
@@ -116,6 +112,8 @@ const Signup = () => {
       setLoading(false);
     }
   };
+  
+  
 
   return (
     <div className="flex justify-center items-center h-screen ">
