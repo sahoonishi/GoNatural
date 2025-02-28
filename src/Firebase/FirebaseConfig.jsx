@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getFirestore, doc, updateDoc, arrayUnion, getDoc, setDoc } from "firebase/firestore";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 
 // Your web app's Firebase configuration
@@ -19,7 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const fireDB = getFirestore(app);
-
+const storage = getStorage(app);
 const auth = getAuth(app);
 auth.useDeviceLanguage();
 export { app, fireDB, auth , RecaptchaVerifier, signInWithPhoneNumber,doc, updateDoc, arrayUnion, getDoc, setDoc };

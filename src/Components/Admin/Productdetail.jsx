@@ -110,8 +110,8 @@ const Productdetail = () => {
                     {index+1}
                   </td>
                   <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                    <div className="flex justify-center w-40 h-40 p-5">
-                      <img className="rounded-lg" src={image} alt="" />
+                    <div className="flex justify-center w-40 h-40 p-2">
+                      <img className="rounded-lg object-contain w-full h-full " src={image} alt="" />
                     </div>
                   </td>
                   <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-green-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
