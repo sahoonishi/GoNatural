@@ -45,7 +45,7 @@ const AddProduct = () => {
     formData.append("cloud_name", `${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}`); // Replace with your Cloudinary cloud name
 
     try {
-      console.log(cloudName);
+      // console.log(cloudName);
       const response = await axios.post(
         `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`,
         formData
